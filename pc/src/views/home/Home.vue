@@ -28,6 +28,13 @@
                                 </li>
                             </ul>
                             </template>
+                            <ul class="son-list" v-if="list.children.length%4==0" >
+                                <li class="show-all-li" >
+                                    <router-link to="#">
+                                        <span>查看全部</span>
+                                    </router-link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -192,22 +199,51 @@
                 </swiper>
             </div>
         </div>
+
+        <BannerWithAd :data-list="bannerAdSwiperList" class="banner-ad-01"></BannerWithAd>
+
+
+
     </div>
 </template>
 
 <script>
+    import BannerWithAd from "../../components/bannerAd/BannerWithAd";
     export default {
         name: "Home",
+        components: {BannerWithAd},
         data(){
             return{
+                bannerAdSwiperList:[
+                    {
+                        title:'',
+                        path:"#",
+                        img:"https://res.vmallres.com/pimages//pages/picImages/0Mhyzrl7EMqHl0W7AXou.jpg",
+                    },
+                    {
+                        title:'',
+                        path:"#",
+                        img:"https://res.vmallres.com/pimages//pages/picImages/iAmu93kmBd5FozOHhZZ2.jpg",
+                    },
+                    {
+                        title:'',
+                        path:"#",
+                        img:"https://res.vmallres.com/pimages//pages/picImages/pAweYuSXBydkqXhfblVo.jpg",
+                    },
+                    {
+                        title:'',
+                        path:"#",
+                        img:"https://res.vmallres.com/pimages//pages/picImages/DcDfj4QFG48Ml25EsZlU.jpg",
+                    }
+                ],
                 bannerActive:0,
                 bannerList:[
-                    {url:'https://res.vmallres.com/pimages//pages/picImages/zLCUVyL22r5anaaTwThm.jpg'},
-                    {url:'https://res.vmallres.com/pimages//pages/picImages/KtGREsXwor9Obq2pwbvm.jpg'},
-                    {url:'https://res.vmallres.com/pimages//pages/picImages/ZhLMfiz62cYBjhDEhK8H.jpg'},
-                    {url:'https://res.vmallres.com/pimages//pages/picImages/V31GeyzpDIvVg9Xh8oKI.jpg'},
-                    {url:'https://res.vmallres.com/pimages//pages/picImages/SmnU0htJkcRrKFHn4Jhv.jpg'},
-                    {url:'https://res.vmallres.com/pimages//pages/picImages/PXofwbY25q8DHxbCb6fE.jpg'},
+                    {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/zLCUVyL22r5anaaTwThm.jpg'},
+                    {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/KtGREsXwor9Obq2pwbvm.jpg'},
+                    {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/ZhLMfiz62cYBjhDEhK8H.jpg'},
+                    {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/V31GeyzpDIvVg9Xh8oKI.jpg'},
+                    {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/SmnU0htJkcRrKFHn4Jhv.jpg'},
+                    {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/PXofwbY25q8DHxbCb6fE.jpg'},
                 ],
                 categoryGroup:[
                     {
@@ -856,6 +892,7 @@
 <style scoped lang="less">
     .home-page{
         position: relative;
+        padding-bottom: 50px;
         .banner{
             position: absolute;
             z-index: 1;
@@ -1445,6 +1482,10 @@
             }
         }
 
+        .banner-ad-01{
+            width: 1200px;
+            margin: 27px auto;
+        }
     }
 
 
