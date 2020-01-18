@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style>
-  body{
+  *{
     color: #333;
   }
   .fade-enter-active, .fade-leave-active {
