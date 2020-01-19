@@ -168,35 +168,7 @@
         <div class="home-recommend">
             <h2 class="recommend-title">精品推荐</h2>
             <div class="recommend-swiper">
-                <swiper :options="recommendSwiperOption">
-                    <swiper-slide v-for="item in 25" :key="item" class="swiper-slide" >
-                        <div class="swiper-product">
-                            <div class="mini">
-                                <div class="tag">
-                                    <span>分期免息</span>
-                                </div>
-                                <div class="pic">
-                                    <img  style="width: 100%;" src="https://res0.vmallres.com/pimages//product/6901443367184/428_428_602BF194C889E3294A39E798EF0D70DDBCEDB2E5A115A594mp.png"/>
-                                </div>
-                                <div class="desc">
-                                    最高优惠200元
-                                </div>
-                            </div>
-                            <div class="title">
-                                HUAWEI MateBook 13
-                            </div>
-                            <div class="price">
-                                ¥4499
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <div class="swiper-button-prev-cs" slot="button-prev">
-                        <Icon type="ios-arrow-back" />
-                    </div>
-                    <div class="swiper-button-next-cs" slot="button-next">
-                        <Icon type="ios-arrow-forward" />
-                    </div>
-                </swiper>
+                <cate-swiper-ad :data-list="recommendProduct"></cate-swiper-ad>
             </div>
         </div>
 
@@ -221,9 +193,10 @@
 <script>
     import BannerWithAd from "../../components/bannerAd/BannerWithAd";
     import ProductGroupList from "../../components/home/ProductGroupList";
+    import CateSwiperAd from "../../components/home/CateSwiperAd";
     export default {
         name: "Home",
-        components: {ProductGroupList, BannerWithAd},
+        components: {CateSwiperAd, ProductGroupList, BannerWithAd},
         data(){
             return{
                 bannerAdSwiperList:[
@@ -841,16 +814,100 @@
                 ],
 
                 recommendSwiperOption: {
-                    slidesPerView: 5,
+                    slidesPerView: 6,
                     spaceBetween: 0,
-                    slidesPerGroup: 5,
-                    loop: true,
+                    slidesPerGroup: 6,
+                    loop: false,
                     loopFillGroupWithBlank: true,
                     navigation: {
                         nextEl: '.swiper-button-next-cs',
                         prevEl: '.swiper-button-prev-cs'
                     }
                 },
+
+                recommendProduct:[
+                    {
+                        id:'1',
+                        tag:{
+                            name:'爆款',
+                            background:'',
+                        },
+                        pic:'https://res0.vmallres.com/pimages//product/6901443356126/428_428_21A7667FA769CBD35B1B4977DF61F62E011DB64E3FDCA71Bmp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'2',
+                        tag:{
+                            name:'5G 新品',
+                            background:'',
+                        },
+                        pic:'https://res0.vmallres.com/pimages//product/6901443360772/428_428_E02F7603A34D401AE8E45310BE565DE90BF8B8598C1E3875mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'3',
+                        tag:'',
+                        pic:'https://res0.vmallres.com/pimages//product/6901443353347/428_428_484D42DB83550E7CF59813E6BE3E2A9A4CF07CF0E75E32A3mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'4',
+                        tag:{
+                            name:'分期免息',
+                            background:'#68BEFF',
+                        },
+                        pic:'https://res0.vmallres.com/pimages//product/6901443304349/428_428_1558245073712mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'5',
+                        tag:'',
+                        pic:'https://res0.vmallres.com/pimages//product/6901443316496/428_428_1563762865294mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'6',
+                        tag:'',
+                        pic:'https://res0.vmallres.com/pimages//product/6901443315376/428_428_1563876645993mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'7',
+                        tag:'',
+                        pic:'https://res0.vmallres.com/pimages//product/6901443352531/428_428_37C267F23F1D9D8B7DBF9202529F8CFBB5AEACA87BCFF900mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'8',
+                        tag:'',
+                        pic:'https://res0.vmallres.com/pimages//product/6901443319756/428_428_C1BD04C38EB887D9B1C911881CD34BAB44FF95CD90558E39mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    },
+                    {
+                        id:'9',
+                        tag:'',
+                        pic:' https://res0.vmallres.com/pimages//product/6901443269723/428_428_1540895297253mp.png',
+                        title:'HUAWEI nova 5z ',
+                        desc:'限时直降200元',
+                        price:'¥1599'
+                    }
+                ],
 
                 cateGroupDataList:[
                     {
@@ -1494,93 +1551,7 @@
             .recommend-swiper {
                 width: 1210px;
                 margin-left: -5px;
-                .swiper-button-prev-cs{
-                    position: absolute;
-                    top: 80px;
-                    left: 4px;
-                    z-index: 2;
-                    width: 36px;
-                    height: 72px;
-                    background: rgba(0,0,0,0.06);
-                    text-align: center;
-                    line-height: 72px;
-                    font-size: 18px;
-                    border-radius: 0 8px 8px 0;
-                    &:hover{
-                        background: rgba(0,0,0,0.18);
-                        cursor: pointer;
-                    }
-                }
-                .swiper-button-next-cs{
-                    position: absolute;
-                    top: 80px;
-                    right: 8px;
-                    z-index: 2;
-                    width: 36px;
-                    height: 72px;
-                    background: rgba(0,0,0,0.06);
-                    text-align: center;
-                    line-height: 72px;
-                    font-size: 18px;
-                    border-radius: 8px 0  0 8px;
-                    &:hover{
-                        background: rgba(0,0,0,0.18);
-                        cursor: pointer;
-                    }
-                }
-                .swiper-slide{
-                    .swiper-product{
-                        text-align: center;
-                        .mini{
-                            box-sizing: border-box;
-                            margin: 5px;
-                            overflow: hidden;
-                            margin-right: 10px;
-                            background: #fff;
-                            border-radius: 10px;
-                            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-                            &:hover{
-                                box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-                            }
-                            .tag{
-                                height: 23px;
-                                span{
-                                    padding: 5px 10px 5px;
-                                    color: #fff;
-                                    background: #ff8486;
-                                    border-radius: 0 0 7px 7px;
-                                    box-sizing: border-box;
-                                    font-size: 12px;
-                                }
-                            }
-                            .pic{
-                                box-sizing: border-box;
-                                padding: 12px 40px 0 40px;
-                                padding-bottom: 0px;
-                                img{
-                                    width: 100%;
-                                }
-                            }
-                            .desc{
-                                font-size: 14px;
-                                background: #f3f3f3;
-                                color: #777;
-                                margin: 0;
-                                padding: 10px;
-                            }
-                        }
-                        .title{
-                            height: 21px;
-                            line-height: 21px;
-                            margin: 7px 5px 0 5px;
-                        }
-                        .price{
-                            color: #d0021b;
-                            line-height: 21px;
-                            margin-bottom: 0;
-                        }
-                    }
-                }
+
             }
         }
 
