@@ -1,52 +1,49 @@
 <template>
     <div class="home-page">
-        <div class="banner">
-            <div class="category-wrap">
-                <div class="category-mini">
-                    <div class="group-category" v-for="(list,index) in categoryGroup" :key="index">
-                        <div class="group-item parent-group">
-                            <router-link to="#">{{list.category_name}}</router-link>
-                        </div>
-                        <div class="group-item" >
-                            <template v-for="(list2,index2) in list.children" >
-                            <router-link to="#" :key="index2"  v-if="list2.is_top">{{list2.category_name}}</router-link>
-                            </template>
-                        </div>
-                        <div class="group-son">
-                            <template v-for="(list3,index2) in groupCate(list.children)" >
-                            <ul class="son-list" :key="index2">
-                               <li v-for="(list4,index4) in list3" :key="index4">
-                                   <router-link to="#">
-                                       <img src="https://res.vmallres.com/pimages//pages/frontCategory/emEoURCoAws3bwrIgjI8.png">
-                                       <span>{{list4.category_name}}</span>
-                                   </router-link>
-                               </li>
-                                <li class="show-all-li" v-if="list3.length>0">
-                                    <router-link to="#">
-                                        <span>查看全部</span>
-                                    </router-link>
-                                </li>
-                            </ul>
-                            </template>
-                            <ul class="son-list" v-if="list.children.length%4==0" >
-                                <li class="show-all-li" >
-                                    <router-link to="#">
-                                        <span>查看全部</span>
-                                    </router-link>
-                                </li>
-                            </ul>
+
+        <BannerSwiper class="home-banner-carousel"  style="height: 550px" :data-list="bannerList">
+            <div slot="isBanner" class="banner">
+                <div class="category-wrap">
+                    <div class="category-mini">
+                        <div class="group-category" v-for="(list,index) in categoryGroup" :key="index">
+                            <div class="group-item parent-group">
+                                <router-link to="#">{{list.cate_name}}</router-link>
+                            </div>
+                            <div class="group-item" >
+                                <template v-for="(list2,index2) in list.children" >
+                                    <router-link to="#" :key="index2"  v-if="list2.is_top">{{list2.cate_name}}</router-link>
+                                </template>
+                            </div>
+                            <div class="group-son">
+                                <template v-for="(list3,index2) in groupCate(list.children)" >
+                                    <ul class="son-list" :key="index2">
+                                        <li v-for="(list4,index4) in list3" :key="index4">
+                                            <router-link to="#">
+                                                <img :src="list4.pic">
+                                                <span>{{list4.cate_name}}</span>
+                                            </router-link>
+                                        </li>
+                                        <li class="show-all-li" v-if="list3.length>0">
+                                            <router-link to="#">
+                                                <span>查看全部</span>
+                                            </router-link>
+                                        </li>
+                                    </ul>
+                                </template>
+                                <ul class="son-list" v-if="list.children.length%4==0" >
+                                    <li class="show-all-li" >
+                                        <router-link to="#">
+                                            <span>查看全部</span>
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <Carousel v-model="bannerActive" class="home-banner-carousel" :height="550" :autoplay-speed="5000" loop radius-dot :autoplay="false" trigger="hover">
-            <CarouselItem v-for="(item,index) in bannerList" :key="index">
-                <router-link to="#" class="banner-a">
-                    <img class="banner-img" :src="item.url"/>
-                </router-link>
-            </CarouselItem>
-        </Carousel>
+        </BannerSwiper>
+
         <div class="banner-next-wrap">
             <div class="user-avatar-login">
                 <Avatar icon="ios-person" class="avatar" src="https://res.vmallres.com/20191126/images/echannel/misc/img_not_logged_in.png" size="52" />
@@ -178,6 +175,16 @@
             <ProductGroupList class="layout" :data-list="cateGroupDataList" :ad-data="cateGroupAdData" ></ProductGroupList>
         </div>
 
+        <div class="home-channel-container">
+                <ProductGroupListTow  class="layout" :data-list="cateGroupDataList" :ad-data="cateGroupAdData" ></ProductGroupListTow>
+                <cate-swiper-ad class="is-tui-swiper"  :data-list="recommendProduct" :slides-per-view="6" :slides-per-group="6"></cate-swiper-ad>
+        </div>
+        <BannerWithAd :data-list="bannerAdSwiperList" class="banner-ad-01"></BannerWithAd>
+        <div class="home-channel-container">
+                <ProductGroupListTow  class="layout" :data-list="cateGroupDataList" :ad-data="cateGroupAdData" ></ProductGroupListTow>
+                <cate-swiper-ad class="is-tui-swiper"  :data-list="recommendProduct" :slides-per-view="6" :slides-per-group="6"></cate-swiper-ad>
+        </div>
+        <BannerWithAd :data-list="[{title:'',path:'',img:'https://res.vmallres.com/pimages//sale/2019-01/awBg2nLycya1sSIX1juQ.jpg'}]" style="height:200px" class="banner-ad-01"></BannerWithAd>
     </div>
 </template>
 <style scoped lang="less">
@@ -187,6 +194,9 @@
             margin: 0 auto;
 
         }
+        .is-tui-swiper{
+            margin: 15px auto;
+        }
     }
 
 </style>
@@ -194,9 +204,11 @@
     import BannerWithAd from "../../components/bannerAd/BannerWithAd";
     import ProductGroupList from "../../components/home/ProductGroupList";
     import CateSwiperAd from "../../components/home/CateSwiperAd";
+    import ProductGroupListTow from "../../components/home/ProductGroupListTow";
+    import BannerSwiper from "../../components/home/BannerSwiper";
     export default {
         name: "Home",
-        components: {CateSwiperAd, ProductGroupList, BannerWithAd},
+        components: {BannerSwiper, ProductGroupListTow, CateSwiperAd, ProductGroupList, BannerWithAd},
         data(){
             return{
                 bannerAdSwiperList:[
@@ -232,14 +244,14 @@
                 ],
                 categoryGroup:[
                     {
-                        category_name:'手机',
+                        cate_name:'手机',
                         id:'',
                         path:'',
                         pid:0,
                         img:'',
                         children:[
                             {
-                                category_name:'HUAWEI Mate系列',
+                                cate_name:'HUAWEI Mate系列',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -247,7 +259,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'HUAWEI P系列',
+                                cate_name:'HUAWEI P系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -255,7 +267,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'HUAWEI nova系列',
+                                cate_name:'HUAWEI nova系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -263,7 +275,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'华为畅享系列',
+                                cate_name:'华为畅享系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -271,7 +283,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'荣耀 V系列',
+                                cate_name:'荣耀 V系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -279,7 +291,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'荣耀 HONOR系列',
+                                cate_name:'荣耀 HONOR系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -287,7 +299,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'荣耀 X系列',
+                                cate_name:'荣耀 X系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -295,7 +307,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'荣耀 Play系列',
+                                cate_name:'荣耀 Play系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -303,7 +315,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'HUAWEI 麦芒系列',
+                                cate_name:'HUAWEI 麦芒系列',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -313,14 +325,14 @@
                         ]
                     },
                     {
-                        category_name:'笔记本 & 平板',
+                        cate_name:'笔记本 & 平板',
                         id:'',
                         path:'',
                         pid:0,
                         img:'',
                         children:[
                             {
-                                category_name:'平板电脑',
+                                cate_name:'平板电脑',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -328,7 +340,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'笔记本电脑',
+                                cate_name:'笔记本电脑',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -336,7 +348,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'笔记本配件',
+                                cate_name:'笔记本配件',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -346,14 +358,14 @@
                         ]
                     },
                     {
-                        category_name:'智能穿戴 & VR',
+                        cate_name:'智能穿戴 & VR',
                         id:'',
                         path:'',
                         pid:0,
                         img:'',
                         children:[
                             {
-                                category_name:'手环',
+                                cate_name:'手环',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -361,7 +373,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'手表',
+                                cate_name:'手表',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -369,7 +381,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'VR',
+                                cate_name:'VR',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -379,14 +391,14 @@
                         ]
                     },
                     {
-                        category_name:'智能家居 & 智慧屏',
+                        cate_name:'智能家居 & 智慧屏',
                         id:'',
                         path:'',
                         pid:0,
                         img:'',
                         children:[
                             {
-                                category_name:'智慧屏',
+                                cate_name:'智慧屏',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -394,7 +406,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'路由器',
+                                cate_name:'路由器',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -402,7 +414,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'智能灯光',
+                                cate_name:'智能灯光',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -410,7 +422,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'电视盒子',
+                                cate_name:'电视盒子',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -418,7 +430,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'生活电器',
+                                cate_name:'生活电器',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -426,7 +438,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'子母/分布式路由',
+                                cate_name:'子母/分布式路由',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -434,7 +446,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'电力猫/wifi放大器',
+                                cate_name:'电力猫/wifi放大器',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -442,7 +454,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'移动路由',
+                                cate_name:'移动路由',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -450,7 +462,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'数码周边',
+                                cate_name:'数码周边',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -458,7 +470,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'环境卫士',
+                                cate_name:'环境卫士',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -466,7 +478,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'安防门锁',
+                                cate_name:'安防门锁',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -474,7 +486,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'健康保健',
+                                cate_name:'健康保健',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -482,7 +494,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'运动户外',
+                                cate_name:'运动户外',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -490,7 +502,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'厨电卫浴',
+                                cate_name:'厨电卫浴',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -498,7 +510,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'影音娱乐',
+                                cate_name:'影音娱乐',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -506,7 +518,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'汽车出行',
+                                cate_name:'汽车出行',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -514,7 +526,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'个护美妆',
+                                cate_name:'个护美妆',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -524,14 +536,14 @@
                         ]
                     },
                     {
-                        category_name:'热销配件',
+                        cate_name:'热销配件',
                         id:'',
                         path:'',
                         pid:0,
                         img:'',
                         children:[
                             {
-                                category_name:'保护壳',
+                                cate_name:'保护壳',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -539,7 +551,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'移动电源',
+                                cate_name:'移动电源',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -547,7 +559,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'耳机',
+                                cate_name:'耳机',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -555,7 +567,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'保护套',
+                                cate_name:'保护套',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -563,7 +575,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'贴膜',
+                                cate_name:'贴膜',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -571,7 +583,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'音箱',
+                                cate_name:'音箱',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -579,7 +591,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'自拍杆/支架',
+                                cate_name:'自拍杆/支架',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -587,7 +599,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'充电器/线材',
+                                cate_name:'充电器/线材',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -595,7 +607,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'U盘/存储卡',
+                                cate_name:'U盘/存储卡',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -603,7 +615,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'摄像机/镜头',
+                                cate_name:'摄像机/镜头',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -611,7 +623,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'智能眼镜',
+                                cate_name:'智能眼镜',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -619,7 +631,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'智能硬件',
+                                cate_name:'智能硬件',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -627,7 +639,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'表带',
+                                cate_name:'表带',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -635,7 +647,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'智慧屏配件',
+                                cate_name:'智慧屏配件',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -643,7 +655,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'生活周边',
+                                cate_name:'生活周边',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -651,7 +663,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'盒子专属配件',
+                                cate_name:'盒子专属配件',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -659,7 +671,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'触控笔/取卡针',
+                                cate_name:'触控笔/取卡针',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -669,14 +681,14 @@
                         ]
                     },
                     {
-                        category_name:'增值服务 & 其他',
+                        cate_name:'增值服务 & 其他',
                         id:'',
                         path:'',
                         pid:0,
                         img:'',
                         children:[
                             {
-                                category_name:'服务器',
+                                cate_name:'服务器',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -684,7 +696,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'增值卡',
+                                cate_name:'增值卡',
                                 id:'',
                                 path:'',
                                 is_top:1,
@@ -692,7 +704,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'AI 计算平台',
+                                cate_name:'AI 计算平台',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -700,7 +712,7 @@
                                 img:'',
                             },
                             {
-                                category_name:'电池服务',
+                                cate_name:'电池服务',
                                 id:'',
                                 path:'',
                                 is_top:0,
@@ -909,6 +921,340 @@
                     }
                 ],
 
+                cateGroupDataList2:[
+                    {
+                        cate_list:{
+                                cate_name:'手机',
+                                id:'',
+                                path:'',
+                                pid:0,
+                                img:'',
+                                children:[
+                                    {
+                                        cate_name:'HUAWEI Mate系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:1,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'HUAWEI P系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'HUAWEI nova系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'华为畅享系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 V系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 HONOR系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 X系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 Play系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'HUAWEI 麦芒系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                ]
+                            },
+                        product_list:[
+                            {
+                                id:'1',
+                                tag:{
+                                    name:'爆款',
+                                    background:'',
+                                },
+                                pic:'https://res0.vmallres.com/pimages//product/6901443356126/428_428_21A7667FA769CBD35B1B4977DF61F62E011DB64E3FDCA71Bmp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'2',
+                                tag:{
+                                    name:'5G 新品',
+                                    background:'',
+                                },
+                                pic:'https://res0.vmallres.com/pimages//product/6901443360772/428_428_E02F7603A34D401AE8E45310BE565DE90BF8B8598C1E3875mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'3',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443353347/428_428_484D42DB83550E7CF59813E6BE3E2A9A4CF07CF0E75E32A3mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'4',
+                                tag:{
+                                    name:'分期免息',
+                                    background:'#68BEFF',
+                                },
+                                pic:'https://res0.vmallres.com/pimages//product/6901443304349/428_428_1558245073712mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'5',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443316496/428_428_1563762865294mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'6',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443315376/428_428_1563876645993mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'7',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443352531/428_428_37C267F23F1D9D8B7DBF9202529F8CFBB5AEACA87BCFF900mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'8',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443319756/428_428_C1BD04C38EB887D9B1C911881CD34BAB44FF95CD90558E39mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'9',
+                                tag:'',
+                                pic:' https://res0.vmallres.com/pimages//product/6901443269723/428_428_1540895297253mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            }
+                        ],
+                    },
+                    {
+                        cate_list: {
+                                cate_name:'手机',
+                                id:'',
+                                path:'',
+                                pid:0,
+                                img:'',
+                                children:[
+                                    {
+                                        cate_name:'HUAWEI Mate系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:1,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'HUAWEI P系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'HUAWEI nova系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'华为畅享系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 V系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 HONOR系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 X系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'荣耀 Play系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                    {
+                                        cate_name:'HUAWEI 麦芒系列',
+                                        id:'',
+                                        path:'',
+                                        is_top:0,
+                                        pid:0,
+                                        img:'',
+                                    },
+                                ]
+                            },
+                        product_list:[
+                            {
+                                id:'1',
+                                tag:{
+                                    name:'爆款',
+                                    background:'',
+                                },
+                                pic:'https://res0.vmallres.com/pimages//product/6901443356126/428_428_21A7667FA769CBD35B1B4977DF61F62E011DB64E3FDCA71Bmp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'2',
+                                tag:{
+                                    name:'5G 新品',
+                                    background:'',
+                                },
+                                pic:'https://res0.vmallres.com/pimages//product/6901443360772/428_428_E02F7603A34D401AE8E45310BE565DE90BF8B8598C1E3875mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'3',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443353347/428_428_484D42DB83550E7CF59813E6BE3E2A9A4CF07CF0E75E32A3mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'4',
+                                tag:{
+                                    name:'分期免息',
+                                    background:'#68BEFF',
+                                },
+                                pic:'https://res0.vmallres.com/pimages//product/6901443304349/428_428_1558245073712mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'5',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443316496/428_428_1563762865294mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'6',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443315376/428_428_1563876645993mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'7',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443352531/428_428_37C267F23F1D9D8B7DBF9202529F8CFBB5AEACA87BCFF900mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'8',
+                                tag:'',
+                                pic:'https://res0.vmallres.com/pimages//product/6901443319756/428_428_C1BD04C38EB887D9B1C911881CD34BAB44FF95CD90558E39mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            },
+                            {
+                                id:'9',
+                                tag:'',
+                                pic:' https://res0.vmallres.com/pimages//product/6901443269723/428_428_1540895297253mp.png',
+                                title:'HUAWEI nova 5z ',
+                                desc:'限时直降200元',
+                                price:'¥1599'
+                            }
+                        ],
+                    }
+                ],
                 cateGroupDataList:[
                     {
                         id:'1',
@@ -1001,7 +1347,8 @@
             }
         },
         created(){
-            setInterval(this.noticeScroll,3000)
+            setInterval(this.noticeScroll,3000);
+
         },
         methods:{
             noticeScroll(){
@@ -1024,6 +1371,8 @@
 </script>
 <style  lang="less">
     .home-banner-carousel{
+        position: relative;
+        z-index: 1;
         margin: 0 auto;
         .ivu-carousel-dots-inside{
             height: 28px;
@@ -1054,7 +1403,7 @@
         padding-bottom: 50px;
         .banner{
             position: absolute;
-            z-index: 1;
+            z-index: 2;
             width: 1200px;
             margin: 0 auto;
             left: 50%;
@@ -1558,6 +1907,10 @@
         .banner-ad-01{
             width: 1200px;
             margin: 27px auto;
+        }
+
+        .home-channel-container{
+            margin-top: 27px;
         }
     }
 

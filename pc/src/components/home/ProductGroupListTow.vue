@@ -1,5 +1,5 @@
 <template>
-    <div class="product-group-list-wrap">
+    <div class="product-group-list-tow-wrap">
         <div class="product-group-list-header">
             <h2 class="title">手机</h2>
             <div class="product-cate-mini">
@@ -37,8 +37,11 @@
         </div>
     </div>
 </template>
+
+
+
 <style scoped lang="less">
-    .product-group-list-wrap{
+    .product-group-list-tow-wrap{
         .product-group-list-header{
             display: flex;
             line-height: 32px;
@@ -98,14 +101,6 @@
                 float: none;
                 clear: both;
             }
-            .cate-ad{
-                a{
-                    img{
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-            }
             .product-item{
                 width: 230px;
                 float: left;
@@ -119,7 +114,7 @@
                 &:first-child{
                     margin-left: 0;
                 }
-                &:nth-child(5n+1){
+                &:nth-child(5n){
                     margin-left: 0;
                 }
                 &:hover{
@@ -162,6 +157,16 @@
                     margin-bottom: 0;
                 }
             }
+
+            .cate-ad{
+                width: 471px;
+                a{
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
         }
     }
 
@@ -170,14 +175,11 @@
     export default {
         name: "ProductGroupList",
         props:{
-            cateList:{
-                type:Array
-            },
             dataList:{
                 type:Array,
             },
             adData:{
-              type: Object
+                type: Object
             }
         },
         data(){
@@ -187,4 +189,3 @@
         }
     }
 </script>
-

@@ -7,6 +7,12 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
+import axios from 'axios'
+
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -64,9 +64,9 @@
         data(){
             return{
                 option: {
-                    slidesPerView: 5,
+                    slidesPerView: this.slidesPerView,
                     spaceBetween: 0,
-                    slidesPerGroup: 5,
+                    slidesPerGroup: this.slidesPerGroup,
                     loop: false,
                     loopFillGroupWithBlank: true,
                     navigation: {
