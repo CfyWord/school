@@ -129,6 +129,262 @@
             </Row>
         </div>
         <router-view></router-view>
+        <div class="common-footer">
+            <div class="slogan-container">
+                <ul>
+                    <li >
+                        <router-link to="#">
+                            <img src="../../assets/slogan1.png"/>
+                            <span>百强企业 品质保证</span>
+                        </router-link>
+                    </li>
+                    <li >
+                        <router-link to="#">
+                            <img src="../../assets/slogan2.png"/>
+                            <span>7天退货 15天换货</span>
+                        </router-link>
+                    </li>
+                    <li >
+                        <router-link to="#">
+                            <img src="../../assets/slogan3.png"/>
+                            <span>48元起免运费</span>
+                        </router-link>
+                    </li>
+                    <li >
+                        <router-link to="#">
+                            <img src="../../assets/slogan4.png"/>
+                            <span>1000家维修网点 全国联保</span>
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="service-container">
+                <div class="service">
+                    <div class="service-l">
+                        <dl>
+                            <dt>
+                                <p>购物相关</p>
+                            </dt>
+                            <dd>
+                                <ol>
+                                    <li>购物指南</li>
+                                    <li>配送方式</li>
+                                    <li>支付方式</li>
+                                    <li>常见问题</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <p>保修与退换货</p>
+                            </dt>
+                            <dd>
+                                <ol>
+                                    <li>保修政策</li>
+                                    <li>退换货政策</li>
+                                    <li>退换货流程</li>
+                                    <li>保修状态查询</li>
+                                    <li>配件防伪查询</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <p>维修与技术支持</p>
+                            </dt>
+                            <dd>
+                                <ol>
+                                    <li>售后网点</li>
+                                    <li>预约维修</li>
+                                    <li>手机寄修</li>
+                                    <li>备件价格查询</li>
+                                    <li>上门服务</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <p>特色服务</p>
+                            </dt>
+                            <dd>
+                                <ol>
+                                    <li>防伪查询</li>
+                                    <li>补购保障</li>
+                                    <li>以旧换新</li>
+                                    <li>礼品包装</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <p>关于我们</p>
+                            </dt>
+                            <dd>
+                                <ol>
+                                    <li>公司介绍</li>
+                                    <li>华为商城简介</li>
+                                    <li>华为线下门店</li>
+                                    <li>荣耀线下门店</li>
+                                    <li>意见反馈</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <p>友情链接</p>
+                            </dt>
+                            <dd>
+                                <ol>
+                                    <li>华为集团</li>
+                                    <li>华为CBG官网</li>
+                                    <li>荣耀官网</li>
+                                    <li>花粉俱乐部</li>
+                                    <li>华为云</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="service-r">
+                        <div class="phone-number">
+                            950805
+                        </div>
+                        <div class="phont-sub">
+                            7x24小时客服热线（仅收市话费）
+                        </div>
+                        <div class="button">
+                            <Button type="primary" shape="circle" style="background: #333;border: 1px solid #333;color: #fff;" >
+                                <Icon type="md-call" color="#fff" style="margin-right: 20px" />
+                               <span style="color: #fff;">在线客服</span>
+                            </Button>
+                        </div>
+                        <div class="service-code">
+                            <h2>关注Vmall：</h2>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-container">
+                <div class="footer">
+                    <div class="footer-warrant-logo">
+                        <router-link to="#">
+                            <img src="https://res.vmallres.com/pimages//sale/2019-01/wLelYbpMVWbj9Xpaa5Fk.png" title="华为商城">
+                        </router-link>
+                    </div>
+                    <div class="footer-warrant-content">
+                        <ul>
+                            <li>
+                                <router-link to="#">
+                                    华为集团
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    华为CBG官网
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    荣耀官网
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    花粉俱乐部
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    华为应用市场
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    EMUI
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    华为终端云空间
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    开发者联盟
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    华为商城手机版
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    网站地图
+                                </router-link>
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li>
+                                <router-link to="#">
+                                    隐私声明
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    服务协议
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    COOKIES
+                                </router-link>
+                            </li>
+                            <li>
+                                Copyright © 2012-2019 华为软件技术有限公司 版权所有 保留一切权利 公安备案
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    苏公网安备32011402010009号
+                                </router-link>
+                            </li>
+                        
+                        </ul>
+                        <ul>
+                            <li>
+                                <router-link to="#">
+                                    苏ICP备17040376号-6
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    增值电信业务经营许可证：苏B2-20130048号
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="#">
+                                    网络文化经营许可证：苏网文[2015] 1599-026号
+                                </router-link>
+                            </li>
+                            <li>
+                                备案主体编号：44201919072182
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-warrant-img">
+                        <router-link to="#">
+                            <img alt="电子营业执照" src="https://res.vmallres.com/pimages//template/content/2016/20160226162415360.png" title="电子营业执照">
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -215,6 +471,10 @@
 </script>
 
 <style scoped lang="less">
+    .hr-60{
+        width: 100%;
+        height: 60px;
+    }
     .base-wrap{
         min-width: 1200px;
         @media screen and (min-width:1200px){//当屏幕最大669时，执行下面css
@@ -507,5 +767,206 @@
                 }
             }
         }
+
+        .common-footer{
+            background: #f9f9f9;
+            .slogan-container{
+                width: 1200px;
+                margin: 0 auto;
+                padding: 20px 0;
+                ul{
+                    display: flex;
+                    list-style: none;
+                    li{
+                        background-position: 0 250px;
+                        font-size: 18px;
+                        line-height: 40px;
+                        flex: 1;
+                        img{
+                            float: left;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                            border: 1px solid #ccc;
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+            .service-container {
+                .service{
+                    display: flex;
+                    border-top: 1px solid #e5e5e5;
+                    border-bottom: 1px solid #e5e5e5;
+                    padding: 23px 0 24px;
+                    width: 1200px;
+                    margin: 0 auto;
+                    .service-l{
+                        display: flex;
+                        flex: 1;
+                        border-right: 1px solid #e5e5e5;
+                        dl{
+                            flex: 1;
+                            dt{
+                                p{
+                                    font-size: 14px;
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            dd{
+                                ol{
+                                    list-style: none;
+                                    li{
+                                        font-size: 12px;
+                                        color: #777;
+                                        line-height: 22px;
+                                        cursor: pointer;
+                                        &:hover{
+                                            color: #ca151d;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .service-r{
+                        width: 280px;
+                        text-align: center;
+                        .phone-number{
+                            font-size: 24px;
+                        }
+                        .button{
+                            margin: 15px 0;
+                            button{
+                                width: 160px;
+                            }
+                        }
+                        .service-code{
+                            display: flex;
+                            width: max-content;
+                            text-align: center;
+                            margin: 0 auto;
+                            h2{
+                                font-size: 14px;
+                            }
+                            ul{
+                                list-style: none;
+                                li{
+                                    width: 24px;
+                                    height: 24px;
+                                    float: left;
+                                    border: 1px solid #ccc;
+                                    margin-right: 10px;
+                                    cursor: pointer;
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            .footer-container{
+                .footer{
+                    width: 1200px;
+                    margin:  0 auto;
+                    padding: 20px 0;
+                    &:after{
+                        content: '';
+                        display: block;
+                        float: none;
+                        clear: both;
+                    }
+                    .footer-warrant-logo{
+                        float: left;
+                        margin-right: 20px;
+                        a{
+                            img{
+                                width: 80px;
+                            }
+                        }
+                    }
+                    .footer-warrant-img{
+                        float: right;
+                        a{
+                            img{
+                                width: 70px;
+                            }
+                        }
+                    }
+                    .footer-warrant-content{
+                        float: left;
+                        ul{
+                            list-style: none;
+                            display: flex;
+                            li{
+                                margin-right: 5px;
+                                color: #777777;
+                                &:last-child{
+                                    margin-right: 0;
+                                   
+                                }
+                                a{
+                                    &:hover{
+                                        color: #ca151d!important;
+                                    }
+                                }
+                        
+                            }
+                            &:nth-child(1){
+                                li{
+                                    &:last-child{
+                                        &:after{
+                                            display: none;
+                                        }
+                                    }
+                                    &:after{
+                                        content: '|';
+                                        margin-right: 0;
+                                    }  
+                                    a{
+                                       color: #777777; 
+                                    }  
+                                }
+                                
+                            }
+                            &:nth-child(2){
+                                li{
+                                    font-size: 12px;
+                                   color: #a4a4a4;
+                                    a{
+                                       color: #a4a4a4; 
+                                    }  
+                                }
+                                
+                            }
+                            &:nth-child(3){
+                                li{
+                                    font-size: 12px;
+                                   color: #a4a4a4; 
+                                    a{
+                                       color: #a4a4a4; 
+                                    }  
+                                    &:nth-child(3){
+                                        &::before{
+                                            color: #a4a4a4; 
+                                            content: '|';
+                                        }
+                                        &:after{
+                                            color: #a4a4a4; 
+                                            content: '|';
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 </style>

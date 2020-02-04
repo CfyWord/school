@@ -7,24 +7,24 @@
                     <div class="category-mini">
                         <div class="group-category" v-for="(list,index) in categoryGroup" :key="index">
                             <div class="group-item parent-group">
-                                <router-link to="#">{{list.cate_name}}</router-link>
+                                <router-link to="list">{{list.cate_name}}</router-link>
                             </div>
                             <div class="group-item" >
                                 <template v-for="(list2,index2) in list.children" >
-                                    <router-link to="#" :key="index2"  v-if="list2.is_top">{{list2.cate_name}}</router-link>
+                                    <router-link to="list" :key="index2"  v-if="list2.is_top">{{list2.cate_name}}</router-link>
                                 </template>
                             </div>
                             <div class="group-son">
                                 <template v-for="(list3,index2) in groupCate(list.children)" >
                                     <ul class="son-list" :key="index2">
                                         <li v-for="(list4,index4) in list3" :key="index4">
-                                            <router-link to="#">
+                                            <router-link to="list">
                                                 <img :src="list4.pic">
                                                 <span>{{list4.cate_name}}</span>
                                             </router-link>
                                         </li>
                                         <li class="show-all-li" v-if="list3.length>0">
-                                            <router-link to="#">
+                                            <router-link to="list">
                                                 <span>查看全部</span>
                                             </router-link>
                                         </li>
@@ -32,7 +32,7 @@
                                 </template>
                                 <ul class="son-list" v-if="list.children.length%4==0" >
                                     <li class="show-all-li" >
-                                        <router-link to="#">
+                                        <router-link to="list">
                                             <span>查看全部</span>
                                         </router-link>
                                     </li>
@@ -185,6 +185,7 @@
                 <cate-swiper-ad class="is-tui-swiper"  :data-list="recommendProduct" :slides-per-view="6" :slides-per-group="6"></cate-swiper-ad>
         </div>
         <BannerWithAd :data-list="[{title:'',path:'',img:'https://res.vmallres.com/pimages//sale/2019-01/awBg2nLycya1sSIX1juQ.jpg'}]" style="height:200px" class="banner-ad-01"></BannerWithAd>
+        <div class="hr-60" style="height:60px;"></div>
     </div>
 </template>
 <style scoped lang="less">
@@ -1400,7 +1401,6 @@
 <style scoped lang="less">
     .home-page{
         position: relative;
-        padding-bottom: 50px;
         .banner{
             position: absolute;
             z-index: 2;
