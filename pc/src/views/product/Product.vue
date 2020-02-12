@@ -15,16 +15,16 @@
                 <div class="pic-box"  >
                     <pic-zoom 
                     :scroll="true"
-                    url="https://res.vmallres.com/pimages//product/6901443366903/428_428_83A07B6E37767C5041DD8004F88E717EEE7E5B643D74DD1Cmp.png"
                     :scale="3"
-                    big-url="https://res.vmallres.com/pimages//product/6901443366903/800_800_83A07B6E37767C5041DD8004F88E717EEE7E5B643D74DD1Cmp.png"
+                    :url="zoomImg"
+                    :big-url="zoomBing"
                     >
                     </pic-zoom>   
                 </div>
                 <div class="tum-swiper">
                     <swiper class="swiper-mini"  :options="swiperOption">
-                        <swiper-slide :class="['swiper-slide',index==1?'active':'']" v-for="index in 23" :key="index" >
-                            <img :title="index" src="https://res.vmallres.com/pimages//product/6901443358489/78_78_81ADC4941CB944156FE13922B7381108E7958F06A63A0A05mp.png" alt="荣耀笔记本 MagicBook 15 预装第三方Linux版操作系统 15.6英寸笔记本电脑 Ryzen 5 3500U 8GB 512GB(冰河银)">
+                        <swiper-slide  v-for="index in 23" :key="index" :class="['swiper-slide',index==tumSwiperActive?'active':'']" >
+                            <img :title="index" @click="tumSwiperActive=index" src="https://res.vmallres.com/pimages//product/6901443358489/78_78_81ADC4941CB944156FE13922B7381108E7958F06A63A0A05mp.png" alt="荣耀笔记本 MagicBook 15 预装第三方Linux版操作系统 15.6英寸笔记本电脑 Ryzen 5 3500U 8GB 512GB(冰河银)">
                         </swiper-slide>
                     </swiper>
                     <div class="swiper-button-prev" slot="button-prev"></div>
@@ -100,12 +100,78 @@
                         </p>
                     </div>
                 </div>
+                <div class="product-nst-list product-code clearfix">
+                    <label >商品编码</label>
+                    <div class="pro-sm-con r-con">
+                        <p>2601010161223</p>
+                    </div>
+                </div>
+                <hr class="pro-info-hr"/>
+                <div class="pro-skus">
+                    <div class="product-nst-list product-code clearfix" v-for="(item,index) in sukData" :key="index">
+                        <label >选择{{item.title}}</label>
+                        <div class="pro-sm-con r-con">
+                            <div :class="['suk-mini',key==0?'active-suk':'']" v-for="(value,key) in item.list" :key="key">
+                                <div class="img" v-if="value.img">
+                                    <img :src="value.img"/>
+                                </div>
+                                <div class="name">
+                                    {{value.name}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="pro-service">-->
+                    <!--<div class="product-nst-list product-code clearfix" >-->
+                        <!--<label >保障服务</label>-->
+                        <!--<div class="pro-sm-con r-con">-->
+                            <!--<div class="service-list">-->
+                                <!--<div class="name">-->
+                                    <!--华为无忧服务-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="product-nst-list product-code clearfix">
+                    <label >已选择商品:</label>
+                    <div class="pro-sm-con r-con">
+                       <div class="check-suk">
+                           <span>青山黛</span>
+                           <span>5G全网通</span>
+                           <span>8GB+512GB</span>
+                           <span>官方标配</span>
+                       </div>
+                    </div>
+                </div>
+                <div class="add-card-box">
+                    <InputNumber class="pro-number" :max="10" size="large" :min="1" v-model="productAddNumber"></InputNumber>
+                    <i-button class="add-card" size="large" type="warning">
+                        <span class="text">加入购物车</span>
+                    </i-button>
+                    <i-button class="bay-now" size="large" type="error">
+                        <span class="text">立即下单</span>
+                    </i-button>
+                </div>
             </div>
         </div>
-        
+        <div class="line"></div>
     </div>
 </template>
+<style lang="less">
+    .pro-number{
+        .ivu-input-number-handler-wrap{
+            opacity: 1!important;
+        }
+    }
+</style>
 <style scoped lang="less">
+    .line{
+        width: 100%;
+        height: 1px;
+        background: #ddd;
+    }
     .product-wrap{
         .breadcrumb-wrap{
             width: 1200px;
@@ -128,161 +194,74 @@
         }
 
         .product-mini{
-                width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                .left-box{
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            margin-bottom: 30px;
+            .left-box{
+                width: 450px;
+                .pic-box{
                     width: 450px;
-                    .pic-box{
-                        width: 450px;
-                        height: 450px;
-                    }
-                    .tum-swiper{
-                        box-sizing: border-box;
-                        margin: 0 20px;
-                        position: relative;
-                        .swiper-mini{
-                            .swiper-slide{
+                    height: 450px;
+                }
+                .tum-swiper{
+                    box-sizing: border-box;
+                    margin: 0 20px;
+                    position: relative;
+                    .swiper-mini{
+                        .swiper-slide{
+                            width: 68px;
+                            height: 68px;
+                            border: 1px solid #ffffff;
+                            img{
                                 width: 68px;
                                 height: 68px;
-                                img{
-                                    width: 68px;
-                                    height: 68px; 
-                                }
-                            }
-                            .active{
-                                border: 1px solid #ca141d;
+                                cursor: pointer;
                             }
                         }
-                        .swiper-button-prev{
-                            outline: none;
-                            z-index: 1;
-                            left: -20px;
-                            top: 40px;
-                            width: 28px;
-                            height: 28px;
+                        .active{
+                            border: 1px solid #ca141d;
                         }
-                        .swiper-button-next{
-                            outline: none;
-                            z-index: 1;
-                            right: -20px;
-                            top: 40px;
-                            width: 28px;
-                            height: 28px;
-                        }
-                    }  
+                    }
+                    .swiper-button-prev{
+                        outline: none;
+                        z-index: 1;
+                        left: -20px;
+                        top: 40px;
+                        width: 28px;
+                        height: 28px;
+                    }
+                    .swiper-button-next{
+                        outline: none;
+                        z-index: 1;
+                        right: -20px;
+                        top: 40px;
+                        width: 28px;
+                        height: 28px;
+                    }
                 }
-                .right-box{
-                    width: 700px;
-                    margin-left: 25px;
-                    .sku-prom-title{
-                        margin-bottom: 12px;
-                        font-size: 21px;
-                    }
-                    .sku-prom-word{
-                        margin-bottom: 12px;
-                    }
-                    .product-info{
-                        background: #f5f5f5;
-                        padding-top: 14px;
-                        padding-bottom: 3px;
-                        .product-info-list{
-                            margin-bottom: 5px;
-                            display: flex;
-                            label{
-                                width: 85px;
-                                font-size: 12px;
-                                float: left;
-                                width: 85px;
-                                text-indent: 10px;
-                                line-height: 30px;
-                            }
-                            .r-con{
-                                flex: 1;
-                            }
-                            .pro-price{
-                                font-size: 24px;
-                                color: #ca141d;
-                                padding-right: 3px;
-                                em{
-                                    color: #ca141d;
-                                }
-                            }
-                            .product-ticket{
-                                font-size: 12px;
-                                float: left;
-                                position: relative;
-                                background: #ef5a62;
-                                color: #fff;
-                                line-height: 20px;
-                                padding: 0 2px;
-                                margin-right: 15px;
-                                margin-left: 5px;
-                                margin-top: 5px;
-                                cursor: pointer;
-                                .be-bc{
-                                    position:absolute;
-                                    left: -5px;
-                                    top: 0;
-                                    height: 20px;
-                                    width: 5px;
-                                    background: url(https://res8.vmallres.com/20191126/images/echannel/icon/icon50.png) no-repeat -27px 0;
-                                }
-                                .af-bc{
-                                    position:absolute;
-                                    width: 5px;
-                                    right: -5px;
-                                    top: 0;
-                                    height: 20px;
-                                    background: url(https://res8.vmallres.com/20191126/images/echannel/icon/icon50.png) no-repeat -32px 0;
-                                }
-                            }
-                            .check-in{
-                                display: inline-block;
-                                line-height: 30px;
-                                font-size: 12px;
-                                color: #ca141d;
-                                cursor: pointer;
-                            }
-                            .pro-cx-con{
-                                .item{
-                                    display: flex;
-                                    font-size: 12px;
-                                    margin-bottom: 10px;
-                                    .tag{
-                                        border: 1px solid #ca141d;
-                                        margin-right: 10px;
-                                        font-size: 12px;
-                                        padding: 0 5px;
-                                    }
-                                    .product-prom-con{
-                                        flex: 1;
-                                        line-height: 1.5;
-                                        max-width: 485px;
-                                        overflow: hidden;
-                                        white-space: nowrap;
-                                        text-overflow: ellipsis;
-                                        display: flex;
-                                        span{
-                                            margin-top: 2px;
-                                            overflow: hidden;
-                                            white-space: nowrap;
-                                            text-overflow: ellipsis;
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                    .product-nst-list{
-                        margin-bottom: 10px;
+            }
+            .right-box{
+                width: 700px;
+                margin-left: 25px;
+                .sku-prom-title{
+                    margin-bottom: 12px;
+                    font-size: 21px;
+                }
+                .sku-prom-word{
+                    margin-bottom: 12px;
+                }
+                .product-info{
+                    background: #f5f5f5;
+                    padding-top: 14px;
+                    padding-bottom: 3px;
+                    .product-info-list{
+                        margin-bottom: 5px;
                         display: flex;
-                        font-size: 12px;
                         label{
-                            text-indent: 10px;
-                            line-height: 30px;
+                            width: 85px;
                             font-size: 12px;
+                            float: left;
                             width: 85px;
                             text-indent: 10px;
                             line-height: 30px;
@@ -290,21 +269,225 @@
                         .r-con{
                             flex: 1;
                         }
-                        .pro-sm-con{
-                            p{
-                                line-height: 30px;
-                            
+                        .pro-price{
+                            font-size: 24px;
+                            color: #ca141d;
+                            padding-right: 3px;
+                            em{
+                                color: #ca141d;
                             }
                         }
-                        
+                        .product-ticket{
+                            font-size: 12px;
+                            float: left;
+                            position: relative;
+                            background: #ef5a62;
+                            color: #fff;
+                            line-height: 20px;
+                            padding: 0 2px;
+                            margin-right: 15px;
+                            margin-left: 5px;
+                            margin-top: 5px;
+                            cursor: pointer;
+                            .be-bc{
+                                position:absolute;
+                                left: -5px;
+                                top: 0;
+                                height: 20px;
+                                width: 5px;
+                                background: url(https://res8.vmallres.com/20191126/images/echannel/icon/icon50.png) no-repeat -27px 0;
+                            }
+                            .af-bc{
+                                position:absolute;
+                                width: 5px;
+                                right: -5px;
+                                top: 0;
+                                height: 20px;
+                                background: url(https://res8.vmallres.com/20191126/images/echannel/icon/icon50.png) no-repeat -32px 0;
+                            }
+                        }
+                        .check-in{
+                            display: inline-block;
+                            line-height: 30px;
+                            font-size: 12px;
+                            color: #ca141d;
+                            cursor: pointer;
+                        }
+                        .pro-cx-con{
+                            .item{
+                                display: flex;
+                                font-size: 12px;
+                                margin-bottom: 10px;
+                                .tag{
+                                    border: 1px solid #ca141d;
+                                    margin-right: 10px;
+                                    font-size: 12px;
+                                    padding: 0 5px;
+                                }
+                                .product-prom-con{
+                                    flex: 1;
+                                    line-height: 1.5;
+                                    max-width: 485px;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    display: flex;
+                                    span{
+                                        margin-top: 2px;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                    }
+                                }
+
+                            }
+                        }
                     }
-                    .service-description{
-                        margin-top: 15px;
+                }
+                .product-nst-list{
+                    margin-bottom: 10px;
+                    display: flex;
+                    font-size: 12px;
+                    label{
+                        text-indent: 10px;
+                        line-height: 30px;
+                        font-size: 12px;
+                        width: 85px;
+                        text-indent: 10px;
+                        line-height: 30px;
+                    }
+                    .r-con{
+                        flex: 1;
+                        .check-suk{
+                            line-height: 30px;
+                            span{
+                                color: #ca141d;
+                                &:after{
+                                    content: '/';
+                                    margin: 0 5px;
+                                }
+                                &:last-child{
+                                    &:after{
+                                       display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .pro-sm-con{
+                        p{
+                            line-height: 30px;
+
+                        }
                     }
 
                 }
-                
+                .service-description{
+                    margin-top: 15px;
+                }
+
+                .pro-info-hr{
+                    color: #3a3a3a;
+                    border: none;
+                    height: 1px;
+                    background-color: #e5e5e5;
+                }
             }
+             .pro-skus{
+                 margin-top: 20px;
+                 .product-nst-list{
+                     label{
+                         line-height: 38px;
+                     }
+                 }
+                 .suk-mini{
+                     cursor: pointer;
+                     display: flex;
+                     line-height: 38px;
+                     border: 1px solid #a4a4a4;
+                     box-sizing: border-box;
+                     float: left;
+                     padding: 0px 10px;
+                     margin-right: 10px;
+                     margin-bottom: 10px;
+                     min-width: 60px;
+                     &:last-child{
+                         margin-right: 0;
+                     }
+                     &:after{
+                         content: '';
+                         display: block;
+                         float: none;
+                         clear: bottom;
+                     }
+                     .img{
+                         width: 30px;
+                         height: 30px;
+                         margin: 5px 10px 5px 0;
+                         img{
+                             width: 100%;
+                             height: 100%;
+                         }
+                     }
+                     .name{
+                         height: 30px;
+                         line-height: 30px;
+                         margin: auto;
+                     }
+                 }
+                 .active-suk{
+                     border: 1px solid #ca141d;
+                 }
+             }
+            .pro-service{
+                .product-nst-list{
+                    label{
+                        line-height: 38px;
+                    }
+                }
+                .service-list{
+                    display: flex;
+                    line-height: 38px;
+                    border: 1px solid #a4a4a4;
+                    box-sizing: border-box;
+                    float: left;
+                    padding: 0px 10px;
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    min-width: 60px;
+                    .name{
+                        height: 30px;
+                        line-height: 30px;
+                        margin: auto;
+                    }
+                }
+            }
+
+            .add-card-box{
+                .pro-number{
+                    margin-right: 15px;
+                }
+                .add-card{
+                    margin-right: 15px;
+                    width: 175px;
+                    font-size: 18px;
+                    color: #ffffff;
+                    .text{
+                        color: #ffffff;
+                    }
+                }
+                .bay-now{
+                    margin-right: 15px;
+                    width: 175px;
+                   font-size: 18px;
+                    color: #ffffff;
+                    .text{
+                        color: #ffffff;
+                    }
+                }
+            }
+
+        }
     }
         
 </style>
@@ -319,6 +502,10 @@ export default {
     data() {
         return {
             TicketReceive:false,
+
+            tumSwiperActive:0,
+            zoomImg:'https://res.vmallres.com/pimages//product/6901443366903/428_428_83A07B6E37767C5041DD8004F88E717EEE7E5B643D74DD1Cmp.png',
+            zoomBing:'https://res.vmallres.com/pimages//product/6901443366903/800_800_83A07B6E37767C5041DD8004F88E717EEE7E5B643D74DD1Cmp.png',
             swiperOption: {
                 slidesPerView: 5,
                 spaceBetween: 15,
@@ -326,7 +513,111 @@ export default {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev'
                 }
-            }
+            },
+
+            productAddNumber:1,
+
+            proSuksData:[
+                {
+                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
+                    suk:'1-5-7-10',
+                    inventory:100,
+                },
+                {
+                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
+                    suk:'2-5-7-10',
+                    inventory:100,
+                },
+                {
+                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
+                    suk:'3-5-7-10',
+                    inventory:100,
+                },
+                {
+                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
+                    suk:'4-5-7-10',
+                    inventory:100,
+                },
+                {
+                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
+                    suk:'1-6-7-10',
+                    inventory:100,
+                }
+            ],
+            sukData:[
+                {
+                    title:'颜色',
+                    list:[
+                        {
+                            id:'1',
+                            name:'亮黑色',
+                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
+                        },
+                        {
+                            id:'2',
+                            name:'新河银',
+                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
+                        },
+                        {
+                            id:'3',
+                            name:'翡翠冷',
+                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
+                        },
+                        {
+                            id:'4',
+                            name:'紫罗兰',
+                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
+                        }
+                    ],
+                },
+                {
+                    title:'版本',
+                    list:[
+                        {
+                            id:'5',
+                            name:'5G全网通',
+                        },
+                        {
+                            id:'6',
+                            name:'4G全网通',
+                        }
+                    ],
+                },
+                {
+                    title:'容量',
+                    list:[
+                        {
+                            id:'7',
+                            name:'8GB+512GB',
+                        },
+                        {
+                            id:'8',
+                            name:'8GB+256GB',
+                        },
+                        {
+                            id:'9',
+                            name:'8GB+128GB',
+                        }
+                    ],
+                },
+                {
+                    title:'套餐',
+                    list:[
+                        {
+                            id:'10',
+                            name:'官方标配',
+                        },
+                        {
+                            id:'11',
+                            name:'青梅竹马',
+                        },
+                        {
+                            id:'12',
+                            name:'青梅竹马',
+                        }
+                    ],
+                }
+            ],
         }
     },
     methods:{

@@ -4,7 +4,7 @@
             <router-link to="product">
                 <div class="pro-panels" >
                     <div class="tag">
-                        <span>新品上市</span>
+                        <span >新品上市</span>
                     </div>
                     <div class="pic">
                         <img src="https://res.vmallres.com/pimages//product/6901443181209/428_428_1545126619402mp.png"/>
@@ -69,9 +69,9 @@ export default {
                 }
                 .tag{
                     text-align: center;
-                    position:absolute;
+                    position:relative;
                     left: 0;
-                    top: 0;
+                    top: -2px;
                     width: 100%;
                     span{
                         color: #fff;
