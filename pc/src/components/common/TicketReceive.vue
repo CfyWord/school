@@ -80,7 +80,8 @@ export default {
     .content{
         position: absolute;
         z-index: 2;
-        top: 30px;
+        top: 50%;
+        transform: translate(0,-50%);
         background: #ffffff;
         border: 1px solid #cecece;
         width: 700px;

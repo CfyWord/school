@@ -18,6 +18,9 @@ export default {
   *{
     color: #333;
   }
+  ul{
+    list-style: none;
+  }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
   }

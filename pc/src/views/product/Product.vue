@@ -13,13 +13,13 @@
         <div class="product-mini">
             <div class="left-box">
                 <div class="pic-box"  >
-                    <pic-zoom 
+                    <PicZoom
                     :scroll="true"
                     :scale="3"
                     :url="zoomImg"
                     :big-url="zoomBing"
                     >
-                    </pic-zoom>   
+                    </PicZoom>
                 </div>
                 <div class="tum-swiper">
                     <swiper class="swiper-mini"  :options="swiperOption">
@@ -157,15 +157,10 @@
             </div>
         </div>
         <div class="line"></div>
+        <ProDetParPacAftSalEva></ProDetParPacAftSalEva>
     </div>
 </template>
-<style lang="less">
-    .pro-number{
-        .ivu-input-number-handler-wrap{
-            opacity: 1!important;
-        }
-    }
-</style>
+
 <style scoped lang="less">
     .line{
         width: 100%;
@@ -481,6 +476,12 @@
                     width: 175px;
                    font-size: 18px;
                     color: #ffffff;
+                    background: #ca151d;
+                    background-color: #ca151d;
+                    &:hover{
+                        background: #ff363f;
+                        background-color: #ff363f;
+                    }
                     .text{
                         color: #ffffff;
                     }
@@ -494,13 +495,16 @@
 <script>
 import PicZoom from 'vue-piczoom';
 import TicketReceive from '../../components/common/TicketReceive.vue';
+import ProDetParPacAftSalEva from "../../components/product/ProDetParPacAftSalEva";
 export default {
     components: {
+        ProDetParPacAftSalEva,
         PicZoom,
         TicketReceive
     },
     data() {
         return {
+
             TicketReceive:false,
 
             tumSwiperActive:0,
@@ -622,9 +626,10 @@ export default {
     },
     methods:{
         checkCoupon(couponId){
+            // 优惠卷
             this.TicketReceive = true;
             window.console.log(this.TicketReceive,couponId)
-        }
+        },
     }
     
 }
