@@ -7,9 +7,12 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
-import axios from 'axios'
 
+
+import axios from 'axios'
 import VueAxios from 'vue-axios'
+
+// require('./mock/index.js')
 
 Vue.use(VueAxios, axios)
 

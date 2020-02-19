@@ -33,62 +33,25 @@
             </div>
 
         </Affix>
+        <!--产品详情-->
         <ProDetailContents></ProDetailContents>
         <div  class="hr-60"></div>
-        <!--产品详情-->
+        <!--产品规格-->
         <ProParameter></ProParameter>
         <div  class="hr-60"></div>
-        <!--产品规格-->
+        <!--产品包装-->
         <ProPackagId></ProPackagId>
-        <div  class="hr-60"></div>
-        <!--产品包装与售后-->
+        <!--产品售后-->
         <ProCusSerLoc></ProCusSerLoc>
-        <div  class="hr-60"></div>
+        <!--免责声明-->
+        <ProductDetailstips></ProductDetailstips>
+        <div class="hr-60"></div>
         <!--用户评价-->
         <ProComment></ProComment>
     </div>
 </template>
-
-<script>
-    import ProParameter from "./ProParameter";
-    import ProPackagId from "./ProPackagId";
-    import ProCusSerLoc from "./ProCusSerLoc";
-    import ProDetailContents from "./ProDetailContents";
-    import ProComment from "./ProComment";
-    export default {
-        name: "ProDetParPacAftSalEva",
-        components: {ProComment, ProDetailContents, ProCusSerLoc, ProPackagId, ProParameter},
-        data(){
-            return{
-                navActive:0,
-                showAllContentClass:['pro-tab-feature-content', 'content-hide'],
-                layoutProNavClass:['layout-pro-nav'],
-            }
-        },
-        created() {
-        },
-        methods:{
-            goCententActive(index,eml){
-                //跳转到指定模块
-                if (this.navActive==index){
-                    return false;
-                }
-                this.navActive = index;
-                document.getElementById(eml).scrollIntoView();
-            },
-            layoutProNavChange(staus){
-                //监听滚动条nav漂浮
-                if(staus){
-                    this.layoutProNavClass = ['layout-pro-nav','nav-box-shadow'];
-                }else{
-                    this.layoutProNavClass = ['layout-pro-nav'];
-                }
-            },
-
-        }
-    }
-</script>
 <style lang="less">
+
     .hr-60{
         height: 60px;
     }
@@ -196,3 +159,43 @@
     }
 
 </style>
+<script>
+    import ProParameter from "./ProParameter";
+    import ProPackagId from "./ProPackagId";
+    import ProCusSerLoc from "./ProCusSerLoc";
+    import ProDetailContents from "./ProDetailContents";
+    import ProComment from "./ProComment";
+    import ProductDetailstips from "./ProductDetailstips";
+    export default {
+        name: "ProDetParPacAftSalEva",
+        components: {ProductDetailstips, ProComment, ProDetailContents, ProCusSerLoc, ProPackagId, ProParameter},
+        data(){
+            return{
+                navActive:0,
+                showAllContentClass:['pro-tab-feature-content', 'content-hide'],
+                layoutProNavClass:['layout-pro-nav'],
+            }
+        },
+        created() {
+        },
+        methods:{
+            goCententActive(index,eml){
+                //跳转到指定模块
+                if (this.navActive==index){
+                    return false;
+                }
+                this.navActive = index;
+                document.getElementById(eml).scrollIntoView();
+            },
+            layoutProNavChange(staus){
+                //监听滚动条nav漂浮
+                if(staus){
+                    this.layoutProNavClass = ['layout-pro-nav','nav-box-shadow'];
+                }else{
+                    this.layoutProNavClass = ['layout-pro-nav'];
+                }
+            },
+
+        }
+    }
+</script>
