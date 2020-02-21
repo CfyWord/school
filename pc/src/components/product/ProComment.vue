@@ -53,8 +53,18 @@
                                {{item.message}}
                             </div>
                             <div class="user-comment-img">
-
+                                <div class="mini-pic-list">
+                                    <div  v-for="(img,key) in item.img_list" :key="key" :class="['img', item.showPicIndex===key?'active':'']" @click="item.showPicIndex=key">
+                                        <img :src="img"/>
+                                    </div>
+                                </div>
+                                <div class="big-pic-list clearfix">
+                                    <div  v-for="(img,key) in item.img_list" :key="key" :class="['img', item.showPicIndex===key?'active':'']" @click="item.showPicIndex=''">
+                                        <img :src="img"/>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="product-user-comment-sku">翡冷翠,5G全网通,8GB+512GB,官方标配</div>
                         </div>
                     </div>
 
@@ -79,6 +89,7 @@
                         star:0,
                         vip_level:0,
                         message:'快递速度很快，购买三天到货，正在拆机装软件',
+                        showPicIndex:'',
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
@@ -90,6 +101,7 @@
                         star:1,
                         vip_level:1,
                         message:'快递速度很快，购买三天到货，正在拆机装软件',
+                        showPicIndex:'',
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
@@ -101,6 +113,7 @@
                         star:2,
                         vip_level:2,
                         message:'快递速度很快，购买三天到货，正在拆机装软件',
+                        showPicIndex:'',
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
@@ -112,6 +125,7 @@
                         star:3,
                         vip_level:3,
                         message:'快递速度很快，购买三天到货，正在拆机装软件',
+                        showPicIndex:'',
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
@@ -123,6 +137,7 @@
                         star:4,
                         vip_level:4,
                         message:'快递速度很快，购买三天到货，正在拆机装软件',
+                        showPicIndex:'',
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
@@ -134,6 +149,7 @@
                         star:5,
                         vip_level:5,
                         message:'快递速度很快，购买三天到货，正在拆机装软件',
+                        showPicIndex:'',
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
@@ -153,7 +169,7 @@
                     return false;
                 }
                 this.messageType = $type;
-            }
+            },
         }
     }
 </script>
@@ -329,6 +345,52 @@
                         .product-user-comment-word{
                             font-size: 12px;
                             margin-bottom: 10px;
+                        }
+                        .user-comment-img{
+                            .mini-pic-list{
+                                .img{
+                                    cursor: zoom-in;
+                                    display: inline-block;
+                                    margin: 5px;
+                                    width: 80px;
+                                    height: 80px;
+                                    position: relative;
+                                    border: 1px solid #ffffff;
+                                    overflow: hidden;
+                                    &:first-child{
+                                        margin-left: 0px;
+                                    }
+                                    img{
+                                        position: absolute;
+                                        width: 80px;
+                                        height: auto;
+                                        left: 50%;
+                                        top: 50%;
+                                        transform: translate(-50%,-50%);
+                                        box-sizing: border-box;
+                                    }
+                                }
+                                .active{
+                                    border: 2px solid #ca141d;
+                                }
+                            }
+                            .big-pic-list{
+                                .img{
+                                    display: none;
+                                    cursor: zoom-out;
+                                    float: left;
+                                }
+                                .active{
+                                    display: block;
+                                }
+                            }
+                        }
+                        .product-user-comment-sku{
+                            color: #a4a4a4;
+                            margin-top: 21px;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            max-height: 36px;
                         }
                     }
                 }
