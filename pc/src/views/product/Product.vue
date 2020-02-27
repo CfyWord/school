@@ -107,21 +107,7 @@
                     </div>
                 </div>
                 <hr class="pro-info-hr"/>
-                <div class="pro-skus">
-                    <div class="product-nst-list product-code clearfix" v-for="(item,index) in sukData" :key="index">
-                        <label >选择{{item.title}}</label>
-                        <div class="pro-sm-con r-con">
-                            <div :class="['suk-mini',key==0?'active-suk':'']" v-for="(value,key) in item.list" :key="key">
-                                <div class="img" v-if="value.img">
-                                    <img :src="value.img"/>
-                                </div>
-                                <div class="name">
-                                    {{value.name}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ProCheckSuk></ProCheckSuk>
                 <!--<div class="pro-service">-->
                     <!--<div class="product-nst-list product-code clearfix" >-->
                         <!--<label >保障服务</label>-->
@@ -388,52 +374,7 @@
                     background-color: #e5e5e5;
                 }
             }
-             .pro-skus{
-                 margin-top: 20px;
-                 .product-nst-list{
-                     label{
-                         line-height: 38px;
-                     }
-                 }
-                 .suk-mini{
-                     cursor: pointer;
-                     display: flex;
-                     line-height: 38px;
-                     border: 1px solid #a4a4a4;
-                     box-sizing: border-box;
-                     float: left;
-                     padding: 0px 10px;
-                     margin-right: 10px;
-                     margin-bottom: 10px;
-                     min-width: 60px;
-                     &:last-child{
-                         margin-right: 0;
-                     }
-                     &:after{
-                         content: '';
-                         display: block;
-                         float: none;
-                         clear: bottom;
-                     }
-                     .img{
-                         width: 30px;
-                         height: 30px;
-                         margin: 5px 10px 5px 0;
-                         img{
-                             width: 100%;
-                             height: 100%;
-                         }
-                     }
-                     .name{
-                         height: 30px;
-                         line-height: 30px;
-                         margin: auto;
-                     }
-                 }
-                 .active-suk{
-                     border: 1px solid #ca141d;
-                 }
-             }
+
             .pro-service{
                 .product-nst-list{
                     label{
@@ -496,8 +437,10 @@
 import PicZoom from 'vue-piczoom';
 import TicketReceive from '../../components/common/TicketReceive.vue';
 import ProDetParPacAftSalEva from "../../components/product/ProDetParPacAftSalEva";
+import ProCheckSuk from "../../components/product/ProCheckSuk";
 export default {
     components: {
+        ProCheckSuk,
         ProDetParPacAftSalEva,
         PicZoom,
         TicketReceive
@@ -521,107 +464,7 @@ export default {
 
             productAddNumber:1,
 
-            proSuksData:[
-                {
-                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                    suk:'1-5-7-10',
-                    inventory:100,
-                },
-                {
-                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                    suk:'2-5-7-10',
-                    inventory:100,
-                },
-                {
-                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                    suk:'3-5-7-10',
-                    inventory:100,
-                },
-                {
-                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                    suk:'4-5-7-10',
-                    inventory:100,
-                },
-                {
-                    title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                    suk:'1-6-7-10',
-                    inventory:100,
-                }
-            ],
-            sukData:[
-                {
-                    title:'颜色',
-                    list:[
-                        {
-                            id:'1',
-                            name:'亮黑色',
-                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                        },
-                        {
-                            id:'2',
-                            name:'新河银',
-                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                        },
-                        {
-                            id:'3',
-                            name:'翡翠冷',
-                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                        },
-                        {
-                            id:'4',
-                            name:'紫罗兰',
-                            img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                        }
-                    ],
-                },
-                {
-                    title:'版本',
-                    list:[
-                        {
-                            id:'5',
-                            name:'5G全网通',
-                        },
-                        {
-                            id:'6',
-                            name:'4G全网通',
-                        }
-                    ],
-                },
-                {
-                    title:'容量',
-                    list:[
-                        {
-                            id:'7',
-                            name:'8GB+512GB',
-                        },
-                        {
-                            id:'8',
-                            name:'8GB+256GB',
-                        },
-                        {
-                            id:'9',
-                            name:'8GB+128GB',
-                        }
-                    ],
-                },
-                {
-                    title:'套餐',
-                    list:[
-                        {
-                            id:'10',
-                            name:'官方标配',
-                        },
-                        {
-                            id:'11',
-                            name:'青梅竹马',
-                        },
-                        {
-                            id:'12',
-                            name:'青梅竹马',
-                        }
-                    ],
-                }
-            ],
+
         }
     },
     methods:{

@@ -13,73 +13,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProDetParPacAftSalEva.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#Affix#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#Affix#0;n#div#0;n#template#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProComment.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="370" column="15" selection-start-line="370" selection-start-column="15" selection-end-line="370" selection-end-column="15" />
-              <folding>
-                <element signature="e#8434#9474#0" />
-                <element signature="e#8497#9467#0" />
-                <element signature="e#9499#10463#0" />
-                <element signature="e#10662#12379#0" />
-                <element signature="e#10789#12112#0" />
-                <element signature="e#12159#12361#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pc/src/App.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="38" column="11" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProPackagId.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" selection-start-line="20" selection-end-line="56" selection-end-column="8" />
-              <folding>
-                <element signature="n#style#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProParameter.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="34" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="30" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pc/src/views/product/Product.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="159" column="18" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
+            <state relative-caret-position="271">
+              <caret line="327" column="16" lean-forward="true" selection-start-line="327" selection-start-column="16" selection-end-line="364" selection-end-column="17" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
@@ -90,6 +27,19 @@
                 <element signature="n#div#3;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#5;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#6;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="e#14807#16092#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProCheckSuk.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="28" column="60" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="60" />
+              <folding>
+                <element signature="e#5064#6349#0" />
               </folding>
             </state>
           </provider>
@@ -129,6 +79,11 @@
       <find>content-long-show</find>
       <find>showAllConten</find>
       <find>mini-pic-list</find>
+      <find>product-star</find>
+      <find>pl-date-zan</find>
+      <find>goCententActive</find>
+      <find>pro-skus</find>
+      <find>product-nst-list</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,7 +95,6 @@
         <option value="$PROJECT_DIR$/pc/src/components/product/ProList.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/common/TicketReceive.vue" />
         <option value="$PROJECT_DIR$/pc/src/views/product/ProDetParPacAftSalEva.vue" />
-        <option value="$PROJECT_DIR$/pc/src/views/product/Product.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/product/ProDetailContents.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/product/ProParameter.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/product/live.html" />
@@ -151,15 +105,18 @@
         <option value="$PROJECT_DIR$/pc/src/components/product/ProPackagId.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/product/ProCusSerLoc.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/product/ProductDetailstips.vue" />
-        <option value="$PROJECT_DIR$/pc/src/components/product/ProDetParPacAftSalEva.vue" />
         <option value="$PROJECT_DIR$/pc/src/components/product/ProComment.vue" />
+        <option value="$PROJECT_DIR$/pc/src/components/product/ProDetParPacAftSalEva.vue" />
+        <option value="$PROJECT_DIR$/pc/src/views/product/Product.vue" />
+        <option value="$PROJECT_DIR$/pc/src/components/product/ProCheckSuk.vue" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1107" />
+    <option name="x" value="859" />
+    <option name="y" value="3" />
     <option name="width" value="1456" />
-    <option name="height" value="1022" />
+    <option name="height" value="1019" />
   </component>
   <component name="ProjectId" id="1WcCFxqANJ5w9sApj4iCcVUvUcM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -192,7 +149,15 @@
               <item name="schoop" type="462c0819:PsiDirectoryNode" />
               <item name="pc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="schoop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="schoop" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="product" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="schoop" type="b2602c69:ProjectViewProjectNode" />
@@ -200,6 +165,14 @@
               <item name="pc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="schoop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="schoop" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="product" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -281,11 +254,16 @@
       <workItem from="1582213229303" duration="15000" />
       <workItem from="1582213480528" duration="818000" />
       <workItem from="1582287797263" duration="3673000" />
+      <workItem from="1582437053702" duration="2053000" />
+      <workItem from="1582471220908" duration="2910000" />
+      <workItem from="1582544503185" duration="602000" />
+      <workItem from="1582556940678" duration="1452000" />
+      <workItem from="1582805544256" duration="1680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46822000" />
+    <option name="totallyTimeSpent" value="55519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -297,9 +275,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1107" y="0" width="1456" height="1022" extended-state="0" />
+    <frame x="859" y="3" width="1456" height="1019" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16762178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17836677" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -485,10 +463,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProDetParPacAftSalEva.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="191" column="16" selection-start-line="191" selection-start-column="19" selection-end-line="205" selection-end-column="67" />
+          <folding>
+            <element signature="n#style#0;n#Affix#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/node_modules/view-design/src/components/affix/affix.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="5" selection-start-line="12" selection-start-column="13" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProComment.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8664">
+          <caret line="456" selection-start-line="456" selection-end-line="456" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="38" column="11" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProPackagId.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" selection-start-line="20" selection-end-line="56" selection-end-column="8" />
+        <state relative-caret-position="437">
+          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#!!top" />
           </folding>
@@ -507,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pc/src/views/product/Product.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="159" column="18" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
+        <state relative-caret-position="271">
+          <caret line="327" column="16" lean-forward="true" selection-start-line="327" selection-start-column="16" selection-end-line="364" selection-end-column="17" />
           <folding>
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
@@ -519,39 +529,17 @@
             <element signature="n#div#3;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#5;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#6;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#14807#16092#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProDetParPacAftSalEva.vue">
+    <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProCheckSuk.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        <state relative-caret-position="133">
+          <caret line="28" column="60" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="60" />
           <folding>
-            <element signature="n#style#0;n#Affix#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#Affix#0;n#div#0;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" column="11" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pc/src/components/product/ProComment.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="370" column="15" selection-start-line="370" selection-start-column="15" selection-end-line="370" selection-end-column="15" />
-          <folding>
-            <element signature="e#8434#9474#0" />
-            <element signature="e#8497#9467#0" />
-            <element signature="e#9499#10463#0" />
-            <element signature="e#10662#12379#0" />
-            <element signature="e#10789#12112#0" />
-            <element signature="e#12159#12361#0" />
+            <element signature="e#5064#6349#0" />
           </folding>
         </state>
       </provider>

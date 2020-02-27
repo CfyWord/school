@@ -47,6 +47,15 @@
                                     <span class="starRating-area" :style="{'background-image': 'url('+starIcon+')'}">
                                         <i :class="['star-score', 'star-'+item.star]" :style="{'background-image': 'url('+starIcon+')'}"></i>
                                     </span>
+                                    <div class="pl-date-zan">
+                                        <span class="date-mini">
+                                           {{item.create_time}}
+                                        </span>
+                                        <span class="zan-mini">
+                                            <Icon type="md-thumbs-up" />
+                                            {{item.zan_count}}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="product-user-comment-word" >
@@ -70,6 +79,9 @@
 
                 </li>
             </ul>
+            <div class="comment-page-mini">
+                <Page :total="40" size="small" />
+            </div>
         </div>
     </div>
 
@@ -93,7 +105,10 @@
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
-                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg']
+                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg'
+                        ],
+                        create_time:"2020-02-20 12:00:00",
+                        zan_count:100,
                     },
                     {
                         username:'a***',
@@ -105,7 +120,10 @@
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
-                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg']
+                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg'
+                        ],
+                        create_time:"2020-02-20 12:00:00",
+                        zan_count:100,
                     },
                     {
                         username:'a***',
@@ -117,7 +135,10 @@
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
-                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg']
+                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg'
+                        ],
+                        create_time:"2020-02-20 12:00:00",
+                        zan_count:100,
                     },
                     {
                         username:'a***',
@@ -129,7 +150,10 @@
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
-                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg']
+                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg'
+                        ],
+                        create_time:"2020-02-20 12:00:00",
+                        zan_count:100,
                     },
                     {
                         username:'a***',
@@ -141,7 +165,10 @@
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
-                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg']
+                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg'
+                        ],
+                        create_time:"2020-02-20 12:00:00",
+                        zan_count:100,
                     },
                     {
                         username:'a***',
@@ -153,7 +180,10 @@
                         img_list:[
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/45bb1567a45c2a4f63a1b5a1.jpg',
                             'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/468db6c130b43b7de24a16f3.jpg',
-                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg']
+                            'https://res.vmallres.com/rms/comment/image/U0526/79593b5a0c61684e3b4560a2d9f95525/100/a4e5e04f10c020e69fa6fe35.jpg'
+                        ],
+                        create_time:"2020-02-20 12:00:00",
+                        zan_count:100,
                     }
                 ],
 
@@ -340,6 +370,25 @@
                                         width: 110px;
                                     }
                                 }
+                                .pl-date-zan{
+                                    float: right;
+                                    .date-mini{
+                                        color: #a4a4a4;
+                                        display: inline-block;
+                                        margin-right: 17px;
+                                    }
+                                    .zan-mini{
+                                        color: #a4a4a4;
+                                        cursor: pointer;
+                                        i{
+                                            color: #a4a4a4;
+                                            font-size: 18px;
+                                            height: 20px;
+                                            line-height: 20px;
+                                            display: inline-block;
+                                        }
+                                    }
+                                }
                             }
                         }
                         .product-user-comment-word{
@@ -391,10 +440,21 @@
                             text-overflow: ellipsis;
                             overflow: hidden;
                             max-height: 36px;
+                            font-size: 12px;
                         }
                     }
                 }
             }
+        }
+        .comment-page-mini{
+            text-align: right;
+            font-size: 14px;
+            color: #a4a4a4;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 0 40px;
+            padding-top: 12px;
+
         }
     }
 </style>

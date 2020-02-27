@@ -4,19 +4,19 @@
             <div :class="layoutProNavClass">
                 <div class="mini">
                     <div class="nav-list">
-                        <a :class="[navActive==0?'active':'']" @click="goCententActive(0,'pro-detail-contents-id')">
+                        <a :class="[navActive==0?'active':'']" @click="goCententActive(0)">
                             商品详情
                             <em></em>
                         </a>
-                        <a :class="[navActive==1?'active':'']" @click="goCententActive(1,'product-parameter-id')">
+                        <a :class="[navActive==1?'active':'']" @click="goCententActive(1)">
                             规格参数
                             <em></em>
                         </a>
-                        <a :class="[navActive==2?'active':'']" @click="goCententActive(2,'pro-packag-id')">
+                        <a :class="[navActive==2?'active':'']" @click="goCententActive(2)">
                             包装与售后
                             <em></em>
                         </a>
-                        <a :class="[navActive==3?'active':'']" @click="goCententActive(3,'product-comment-id')">
+                        <a :class="[navActive==3?'active':'']" @click="goCententActive(3)">
                             用户评价(5万+)
                             <em></em>
                         </a>
@@ -34,20 +34,20 @@
 
         </Affix>
         <!--产品详情-->
-        <ProDetailContents></ProDetailContents>
+        <ProDetailContents ref="ProDetailContents"></ProDetailContents>
         <div  class="hr-60"></div>
         <!--产品规格-->
-        <ProParameter></ProParameter>
+        <ProParameter ref="productParameterId"></ProParameter>
         <div  class="hr-60"></div>
         <!--产品包装-->
-        <ProPackagId></ProPackagId>
+        <ProPackagId ref="proPackagId"></ProPackagId>
         <!--产品售后-->
         <ProCusSerLoc></ProCusSerLoc>
         <!--免责声明-->
         <ProductDetailstips></ProductDetailstips>
         <div class="hr-60"></div>
         <!--用户评价-->
-        <ProComment></ProComment>
+        <ProComment ref="productCommentId"></ProComment>
     </div>
 </template>
 <style lang="less">
@@ -172,20 +172,46 @@
         data(){
             return{
                 navActive:0,
+                navIds:[
+                    "pro-detail-contents-id",
+                    "product-parameter-id",
+                    "pro-packag-id",
+                    "product-comment-id"
+                ],
                 showAllContentClass:['pro-tab-feature-content', 'content-hide'],
                 layoutProNavClass:['layout-pro-nav'],
             }
         },
         created() {
         },
+        mounted(){
+            window.addEventListener('scroll', this.handleScroll)
+        },
         methods:{
-            goCententActive(index,eml){
+            handleScroll(){
+                // let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                // //let offsetTop = this.$refs.ProDetailContents.$el.offsetTop;
+                // let offsetTop2 = this.$refs.productParameterId.$el.offsetTop;
+                // let offsetTop3 = this.$refs.proPackagId.$el.offsetTop;
+                // let offsetTop4 = this.$refs.productCommentId.$el.offsetTop;
+                // if (scrollTop>offsetTop4+1020){
+                //     this.navActive = 3;
+                // }else if(scrollTop>offsetTop3+1020){
+                //     this.navActive = 2;
+                // }else if(scrollTop>offsetTop2+1020){
+                //     this.navActive = 1;
+                // }else{
+                //     this.navActive = 0;
+                // }
+                // window.console.log(this.$refs.ProDetailContents)
+            },
+            goCententActive(index){
                 //跳转到指定模块
                 if (this.navActive==index){
                     return false;
                 }
                 this.navActive = index;
-                document.getElementById(eml).scrollIntoView();
+                document.getElementById(this.navIds[index]).scrollIntoView();
             },
             layoutProNavChange(staus){
                 //监听滚动条nav漂浮
