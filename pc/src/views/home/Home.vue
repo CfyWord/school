@@ -7,32 +7,32 @@
                     <div class="category-mini">
                         <div class="group-category" v-for="(list,index) in categoryGroup" :key="index">
                             <div class="group-item parent-group">
-                                <router-link to="list">{{list.cate_name}}</router-link>
+                                <router-link target="_blank" :to="'/list?cate_id='+list.id">{{list.cate_name}}</router-link>
                             </div>
                             <div class="group-item" >
                                 <template v-for="(list2,index2) in list.children" >
-                                    <router-link to="list" :key="index2"  v-if="list2.is_top">{{list2.cate_name}}</router-link>
+                                    <router-link target="_blank" :to="'/list?cate_id='+list2.id" :key="index2"  v-if="list2.is_top">{{list2.cate_name}}</router-link>
                                 </template>
                             </div>
                             <div class="group-son">
                                 <template v-for="(list3,index2) in groupCate(list.children)" >
                                     <ul class="son-list" :key="index2">
                                         <li v-for="(list4,index4) in list3" :key="index4">
-                                            <router-link to="list">
-                                                <img :src="list4.pic">
+                                            <router-link target="_blank" :to="'/list?cate_id='+list4.id">
+                                                <img :src="list4.img">
                                                 <span>{{list4.cate_name}}</span>
                                             </router-link>
                                         </li>
                                         <li class="show-all-li" v-if="list3.length>0">
-                                            <router-link to="list">
+                                            <router-link target="_blank" :to="'/list?cate_id='+list.id">
                                                 <span>查看全部</span>
                                             </router-link>
                                         </li>
                                     </ul>
                                 </template>
-                                <ul class="son-list" v-if="list.children.length%4==0" >
+                                <ul class="son-list" v-if="list.children.length%4===0" >
                                     <li class="show-all-li" >
-                                        <router-link to="list">
+                                        <router-link target="_blank" :to="'/list?cate_id='+list.id">
                                             <span>查看全部</span>
                                         </router-link>
                                     </li>
@@ -243,486 +243,7 @@
                     {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/SmnU0htJkcRrKFHn4Jhv.jpg'},
                     {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/PXofwbY25q8DHxbCb6fE.jpg'},
                 ],
-                categoryGroup:[
-                    {
-                        cate_name:'手机',
-                        id:'',
-                        path:'',
-                        pid:0,
-                        img:'',
-                        children:[
-                            {
-                                cate_name:'HUAWEI Mate系列',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'HUAWEI P系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'HUAWEI nova系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'华为畅享系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'荣耀 V系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'荣耀 HONOR系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'荣耀 X系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'荣耀 Play系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'HUAWEI 麦芒系列',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                        ]
-                    },
-                    {
-                        cate_name:'笔记本 & 平板',
-                        id:'',
-                        path:'',
-                        pid:0,
-                        img:'',
-                        children:[
-                            {
-                                cate_name:'平板电脑',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'笔记本电脑',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'笔记本配件',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                        ]
-                    },
-                    {
-                        cate_name:'智能穿戴 & VR',
-                        id:'',
-                        path:'',
-                        pid:0,
-                        img:'',
-                        children:[
-                            {
-                                cate_name:'手环',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'手表',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'VR',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                        ]
-                    },
-                    {
-                        cate_name:'智能家居 & 智慧屏',
-                        id:'',
-                        path:'',
-                        pid:0,
-                        img:'',
-                        children:[
-                            {
-                                cate_name:'智慧屏',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'路由器',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'智能灯光',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'电视盒子',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'生活电器',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'子母/分布式路由',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'电力猫/wifi放大器',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'移动路由',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'数码周边',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'环境卫士',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'安防门锁',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'健康保健',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'运动户外',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'厨电卫浴',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'影音娱乐',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'汽车出行',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'个护美妆',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                        ]
-                    },
-                    {
-                        cate_name:'热销配件',
-                        id:'',
-                        path:'',
-                        pid:0,
-                        img:'',
-                        children:[
-                            {
-                                cate_name:'保护壳',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'移动电源',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'耳机',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'保护套',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'贴膜',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'音箱',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'自拍杆/支架',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'充电器/线材',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'U盘/存储卡',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'摄像机/镜头',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'智能眼镜',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'智能硬件',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'表带',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'智慧屏配件',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'生活周边',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'盒子专属配件',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'触控笔/取卡针',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                        ]
-                    },
-                    {
-                        cate_name:'增值服务 & 其他',
-                        id:'',
-                        path:'',
-                        pid:0,
-                        img:'',
-                        children:[
-                            {
-                                cate_name:'服务器',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'增值卡',
-                                id:'',
-                                path:'',
-                                is_top:1,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'AI 计算平台',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                            {
-                                cate_name:'电池服务',
-                                id:'',
-                                path:'',
-                                is_top:0,
-                                pid:0,
-                                img:'',
-                            },
-                        ]
-                    },
-                ],
+                categoryGroup:[],
                 new_notice:[
                     {title:'荣耀年货节-AI耀带回家活动',url:'#'},
                     {title:'关于部分区域受恶劣天气所影响的通告',url:'#'},
@@ -1348,10 +869,15 @@
             }
         },
         created(){
+            this.getCategoryList();
             setInterval(this.noticeScroll,3000);
-
         },
         methods:{
+            getCategoryList(){
+                this.axios.get(this.ApiPath.category.getList).then(res=>{
+                    this.categoryGroup = res.data;
+                });
+            },
             noticeScroll(){
                 this.animate=true;    // 因为在消息向上滚动的时候需要添加css3过渡动画，所以这里需要设置true
                 setTimeout(()=>{      //  这里直接使用了es6的箭头函数，省去了处理this指向偏移问题，代码也比之前简化了很多

@@ -7,83 +7,76 @@
             </Breadcrumb>
         </div>
         <div class="cate-search-wrap">
-            <div class="cate-search-item cate-list">
+            <div class="cate-search-item cate-list" v-if="cate_list">
                 <div class="title">
-                    分类：
+                    {{cate_list.name}}：
                 </div>
                 <div class="list-mini">
-                    <div class="item">
-                        <router-link to="#">
-                            平板电脑
-                        </router-link>
-                    </div>
-                    <div class="item">
-                        <router-link to="#">
-                            笔记本电脑
-                        </router-link>
-                    </div>
-                    <div class="item">
-                        <router-link to="#">
-                            笔记本配件
-                        </router-link>
-                    </div>
-                    <div class="item" >
-                        <router-link to="#">
-                            充电器/线材
-                        </router-link>
+                    <div class="item" v-for="item in cate_list.list" :key="item.value">
+                        <a :class="{active:proListForm.cate_id===item.value}"  @click="cateClick(item.value)">
+                            {{item.name}}
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="cate-search-item price-list">
+            <div class="cate-search-item price-list" v-if="price_range.length>0">
                 <div class="title">
-                    价格区间：
+                    {{price_range.name}}：
                 </div>
                 <div class="list-mini">
-                    <CheckboxGroup v-model="priceCheckbox">
-                        <Checkbox class="item" label="0-1500"></Checkbox>
-                        <Checkbox class="item" label="1500-2700"></Checkbox>
-                        <Checkbox class="item" label="2700-6000"></Checkbox>
+                    <CheckboxGroup v-model="priceCheckbox" @on-change="priceRangeChange" >
+                        <Checkbox class="item" v-for="item in price_range.list" :key="item.value" :label="item.value" >{{item.name}}</Checkbox>
                     </CheckboxGroup>
-                
                 </div>
             </div>
-            <div class="cate-search-item cate-list">
+            <div class="cate-search-item attributes-list" v-for="(list,index) in attributes" :key="index">
+                <div class="title">
+                    {{list.name}}：
+                </div>
+                <div class="list-mini">
+                    <CheckboxGroup v-model="attributesCheckbox" @on-change="attributesChange" >
+                        <Checkbox class="item" v-for="item in list.list" :key="item.value" :label="item.value" >{{item.name}}</Checkbox>
+                    </CheckboxGroup>
+                </div>
+            </div>
+
+            <div class="cate-search-item sort-list">
                 <div class="title">
                     排序：
                 </div>
                 <div class="list-mini">
                     <div class="item">
-                        <router-link to="#">
+                        <a :class="{active:proListForm.searchSortField===0}" @click="clickSort(0)">
                             综合
-                        </router-link>
+                        </a>
                     </div>
                     <div class="item">
-                        <router-link to="#">
+                        <a :class="{active:proListForm.searchSortField===1}" @click="clickSort(1)">
                             最新
-                        </router-link>
+                        </a>
                     </div>
                     <div class="item">
-                        <router-link to="#">
+                        <a :class="{active:proListForm.searchSortField===2}" @click="clickSort(2)">
                             热度
-                        </router-link>
+                        </a>
                     </div>
-                    <div class="item" >
-                        <router-link to="#">
+                    <div class="item">
+                        <a :class="{active:proListForm.searchSortField===3}" @click="clickSort(3)">
                             <span>价格</span>
                             <div class="price-sort">
-                                <Icon class="icon-1 active-price" type="md-arrow-dropup" />
-                                <Icon class="icon-2 " type="md-arrow-dropdown" />
+                                <Icon :class="{'icon-1':true,'active-price':proListForm.searchSortType==='asc'}" type="md-arrow-dropup" />
+                                <Icon :class="{'icon-2':true,'active-price':proListForm.searchSortType==='desc'}" type="md-arrow-dropdown" />
                             </div>
-                        </router-link>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="hr-20"></div>
         <div class="pro-list-box">
-            <ProList></ProList>
+            <ProList :pro-list="proList"></ProList>
             <div class="page-box">
-                <Page :total="10000" />
+                <Page v-show="pageTotal>0" :page-size="proListForm.pageSize" :total="pageTotal" @on-change="pageChange" />
             </div>
         </div>
   </div>
@@ -95,7 +88,80 @@ export default {
     components:{ProList},
     data(){
         return{
+            cate_list:[],
+            price_range:[],
+            attributes:[],
+            pageTotal:0,
+            proListForm:{
+                cate_id:'',
+                keyword: '',
+                pageSize: 20,
+                pageNum: 1,
+                searchSortField: 0,
+                searchSortType: '',
+                searchFlag: 1,
+                priceRange:'',
+                brandType: 0,
+                attributes:[],
+            },
             priceCheckbox:[],
+            attributesCheckbox:[],
+            proList:[],
+        }
+    },
+    created(){
+        if (this.$route.query.cate_id){
+            this.proListForm.class_id=parseInt(this.$route.query.cate_id);
+        }
+        this.getProList();
+    },
+    methods:{
+        clickSort(value){//点击排序
+            this.proListForm.searchSortField=value;
+            if (value===3&&this.proListForm.searchSortType==='asc'){
+                this.proListForm.searchSortType='desc';
+            } else if (value===3) {
+                this.proListForm.searchSortType='asc';
+            }else{
+                this.proListForm.searchSortType='';
+            }
+            this.proListForm.pageNum=1;
+            this.getProList();
+        },
+        attributesChange(value){//属性选中
+            this.proListForm.attributes = value;
+            this.proListForm.pageNum=1;
+            this.getProList();
+        },
+        priceRangeChange(value){//价格选择
+            this.proListForm.priceRange = value;
+            this.proListForm.pageNum=1;
+            this.getProList();
+        },
+        cateClick(value){//分类选项
+            this.proListForm.pageNum=1;
+            if (this.proListForm.cate_id===value){
+                return false;
+            }
+            this.$route.query.cate_id = value;
+            this.proListForm.cate_id = value;
+            this.getProList();
+        },
+        pageChange(){
+          this.getProList();
+        },
+        getProList() {
+            window.console.log(this.proListForm);
+            this.axios.get('/product/list', {
+                params: this.proListForm
+            }).then(response => {
+                let data = response.data;
+                this.proList = data.list;
+                this.pageTotal = data.total;
+                this.cate_list = data.cate_list;
+                this.price_range = data.price_range;
+                this.attributes = data.attributes;
+            })
         }
     }
 }
@@ -123,7 +189,7 @@ export default {
                         }
                     }
                 }
-                
+
             }
         }
         .cate-search-wrap{
@@ -143,17 +209,23 @@ export default {
                     border-bottom: none;
                 }
                 .title{
-                    min-width: 100px;
+                    min-width: 70px;
                      color: #666;
                 }
                 .list-mini{
                     flex: 1;
-                        height: 35px;
+                        min-height: 35px;
                         overflow: hidden;
                     .item{
                         margin-right: 40px;
                         float: left;
                         font-size: 12px;
+                        .active{
+                            color:#ca141d;
+                            span{
+                                color:#ca141d;
+                            }
+                        }
                         a{
                             color: #333;
                         }
@@ -199,10 +271,11 @@ export default {
         .pro-list-box{
             width: 1200px;
             margin: 0 auto;
-            
+
         }
         .page-box{
             text-align: right;
+            padding-bottom: 25px;
         }
     }
 </style>

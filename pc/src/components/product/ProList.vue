@@ -1,38 +1,59 @@
 <template>
-    <ul class="pro-list">
-        <li v-for="index in 15" :key="index">
-            <router-link to="product">
+
+    <ul class="pro-list" v-if="proList.length>0">
+        <li v-for="(item,index) in proList" :key="index">
+            <router-link :to="'product?id='+item.id">
                 <div class="pro-panels" >
-                    <div class="tag">
-                        <span >新品上市</span>
+                    <div class="tag"  >
+                        <span v-show="item.tag" :style="{color:item.tag.color,background:item.tag.background}">{{item.tag.name}}</span>
                     </div>
                     <div class="pic">
-                        <img src="https://res.vmallres.com/pimages//product/6901443181209/428_428_1545126619402mp.png"/>
-                        <div class="shortage">暂时缺货</div>
+                        <img :src="item.pic"/>
+                        <div class="shortage" v-show="item.inventory<1">暂时缺货</div>
                     </div>
                     <div class="title">
-                        HUAWEI MateBook D 14
+                       {{item.title}}
                     </div>
                     <div class="price">
-                        <span class="prc">¥4299</span>
-                        <span class="more-prc">多款可选</span>
+                        <span class="prc">¥{{item.price}}</span>
+                        <span class="more-prc" v-show="item.sukCount">多款可选</span>
                     </div>
                     <div class="pj">
-                        <span class="number">10054人评价</span>
-                        <span>98%好评</span>
+                        <span class="number">{{item.comment.count}}人评价</span>
+                        <span>{{item.comment.percentage}}%好评</span>
                     </div>
                 </div>
             </router-link>
         </li>
     </ul>
+    <div class="not-data" v-else>
+        <span>没有数据</span>
+    </div>
 </template>
 <script>
 export default {
     name:'ProList',
+    props:{
+        proList:{
+            type:Array,
+            required: false,
+            default:function () {
+                return [];
+            }
+        },
+    },
     data(){
         return{
 
         }
+    },
+    created() {
+    },
+    methods:{
+
+    },
+    watch:{
+
     }
 }
 </script>
@@ -73,6 +94,7 @@ export default {
                     left: 0;
                     top: -2px;
                     width: 100%;
+                    height: 18px;
                     span{
                         color: #fff;
                         font-size: 12px;
@@ -146,6 +168,12 @@ export default {
                     }
                 }
             }
+        }
+    }
+    .not-data{
+        text-align: center;
+        span{
+            color: #999999;
         }
     }
 </style>

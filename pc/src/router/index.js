@@ -4,6 +4,7 @@ import Home from '../views/home/Home.vue';
 import Base from '../views/base/Base.vue';
 import ProductList from '../views/list/ProductList.vue';
 import Product from '../views/product/Product.vue';
+import Search from "../views/product/Search";
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
         path: '/product',
         name:'product',
         component: Product
+      },
+      {
+        path: '/search',
+        name:'search',
+        component: Search
       },
     ]
   },

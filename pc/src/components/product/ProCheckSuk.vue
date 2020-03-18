@@ -4,13 +4,18 @@
             <div class="product-nst-list product-code clearfix" v-for="(item,index) in sukData" :key="index">
                 <label >选择{{item.title}}</label>
                 <div class="pro-sm-con r-con">
-                    <div :class="['suk-mini',key==0?'active-suk':'']" v-for="(value,key) in item.list" :key="key">
+                    <div class="suk-mini"
+                         :class="{'active-suk':value.id===changeSukValue[index],'suk-disabled ':!openClickStatus(value.id,index)}" v-for="(value,key) in item.list"
+                         :key="key"
+                         @click="changeSuk(value.id,index,key)"
+                    >
                         <div class="img" v-if="value.img">
                             <img :src="value.img"/>
                         </div>
                         <div class="name">
-                            {{value.name}}
+                            {{value.name}}{{!openClickStatus(value.id,index)}}
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -23,112 +28,32 @@
         name: "ProCheckSuk",
         data(){
             return{
-                proSuksData:[
-                    {
-                        sukIds:[1,5,7,10],
-                        title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                        suk_id:'1',
-                        inventory:100,
-                    },
-                    {
-                        sukIds:[1,5,7,11],
-                        title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                        suk_id:'2',
-                        inventory:100,
-                    },
-                    {
-                        sukIds:[1,5,7,12],
-                        title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                        suk_id:'3',
-                        inventory:100,
-                    },
-                    {
-                        sukIds:[1,5,8,10],
-                        title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                        suk_id:'4',
-                        inventory:100,
-                    },
-                    {
-                        sukIds:[1,5,8,11],
-                        title:'HUAWEI Mate 30 Pro 5G 全网通 8GB+128GB 麒麟990 双4000万徕卡电影四摄（亮黑色）',
-                        suk_id:'5',
-                        inventory:100,
-                    }
-                ],
-                sukData:[
-                    {
-                        title:'颜色',
-                        list:[
-                            {
-                                id:1,
-                                name:'亮黑色',
-                                img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                            },
-                            {
-                                id:2,
-                                name:'新河银',
-                                img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                            },
-                            {
-                                id:3,
-                                name:'翡翠冷',
-                                img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                            },
-                            {
-                                id:4,
-                                name:'紫罗兰',
-                                img:'https://res.vmallres.com/pimages//product/6901443353200/40_40_E73C4A7361AE8B1D4FA95C2205572F40458983840EF80321mp.png',
-                            }
-                        ],
-                    },
-                    {
-                        title:'版本',
-                        list:[
-                            {
-                                id:5,
-                                name:'5G全网通',
-                            },
-                            {
-                                id:6,
-                                name:'4G全网通',
-                            }
-                        ],
-                    },
-                    {
-                        title:'容量',
-                        list:[
-                            {
-                                id:7,
-                                name:'8GB+512GB',
-                            },
-                            {
-                                id:8,
-                                name:'8GB+256GB',
-                            },
-                            {
-                                id:9,
-                                name:'8GB+128GB',
-                            }
-                        ],
-                    },
-                    {
-                        title:'套餐',
-                        list:[
-                            {
-                                id:10,
-                                name:'官方标配',
-                            },
-                            {
-                                id:11,
-                                name:'青梅竹马',
-                            },
-                            {
-                                id:12,
-                                name:'青梅竹马',
-                            }
-                        ],
-                    }
-                ],
+                openClick:[],
+                changeSukValue:[],
+                proSuksData:[],
+                sukData:[],
+            }
+        },
+        created(){
+            this.getProInfo();
+        },
+        methods:{
+            openClickStatus(){
+
+            },
+            setOpenCheck(){
+
+            },
+            changeSuk(){
+
+            },
+            getProInfo(){
+                this.axios.get('/product/details?id=1').then(response=>{
+                    let $res = response.data;
+                    this.proSuksData = $res.pro_suks_data;
+                    this.sukData = $res.suk_data;
+                });
+
             }
         }
     }
@@ -144,8 +69,6 @@
             line-height: 30px;
             font-size: 12px;
             width: 85px;
-            text-indent: 10px;
-            line-height: 30px;
         }
         .r-con{
             flex: 1;
@@ -187,7 +110,7 @@
             border: 1px solid #a4a4a4;
             box-sizing: border-box;
             float: left;
-            padding: 0px 10px;
+            padding: 0 10px;
             margin-right: 10px;
             margin-bottom: 10px;
             min-width: 60px;
@@ -217,6 +140,13 @@
         }
         .active-suk{
             border: 1px solid #ca141d;
+        }
+        .suk-disabled{
+            border: 1px solid #e4e4e4;
+            cursor: not-allowed;
+            .name{
+                color: #c4c4c4;
+            }
         }
     }
 </style>
