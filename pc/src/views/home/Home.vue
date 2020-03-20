@@ -103,7 +103,7 @@
                 <div class="notice-list">
                     <div class="b-text">公告</div>
                     <div class="list-item">
-                        <a class="item" v-for="(item,index) in new_notice" :to="item.url" :key="index">{{item.title}}</a>
+                        <router-link class="item" :to="item.url?item.url:'notice'"  v-for="(item,index) in newNotice"  :key="index">{{item.title}}</router-link>
                     </div>
                 </div>
                 <div class="evm-rap">
@@ -131,7 +131,7 @@
         <div class="home-ad-1">
             <div class="ad-list" v-for="(item,index) in adList[0]" :key="index">
                 <router-link :to="item.url">
-                    <img :src="item.img"/>
+                    <img v-lazy="item.img"  alt="图片" />
                 </router-link>
             </div>
         </div>
@@ -244,31 +244,8 @@
                     {path:'',title:'',url:'https://res.vmallres.com/pimages//pages/picImages/PXofwbY25q8DHxbCb6fE.jpg'},
                 ],
                 categoryGroup:[],
-                new_notice:[
-                    {title:'荣耀年货节-AI耀带回家活动',url:'#'},
-                    {title:'关于部分区域受恶劣天气所影响的通告',url:'#'},
-                    {title:'关于部分区域受恶劣天气所影响的通告3',url:'#'},
-                    {title:'关于部分区域受恶劣天气所影响的通告4',url:'#'},
-                ],
-                adList:[
-                    [{
-                        title:'1',
-                        url:'#',
-                        img:"https://res.vmallres.com/pimages//pages/picImages/4Uy4iyo0ScflnyybtKkS.png"
-                    },{
-                        title:'2',
-                        url:'#',
-                        img:"https://res.vmallres.com/pimages//pages/picImages/uYUtR5G62XVMgcOFD3z3.jpg"
-                    },{
-                        title:'3',
-                        url:'#',
-                        img:"https://res.vmallres.com/pimages//pages/picImages/ls42UcCyR1Lk55kz0XWQ.jpg"
-                    },{
-                        title:'4',
-                        url:'#',
-                        img:"https://res.vmallres.com/pimages//pages/picImages/WpPJQL0nIXGkaO3asuZo.jpg"
-                    }]
-                ],
+                newNotice:[],
+                adList:[],
                 animate:false,
 
                 hotProduct:[
@@ -865,14 +842,31 @@
                     path:'#',
                     pic:'https://res0.vmallres.com/pimages//frontLocation/content/bhVGJ9RFw4XRJqd1rJ5m.png',
                 },
-
+                noticeScrollTimer:null,
             }
         },
         created(){
             this.getCategoryList();
-            setInterval(this.noticeScroll,3000);
+            this.getNewNotice();
+            this.getAdList();
+        },
+        mounted(){
+            this.noticeScrollTimer = setInterval(this.noticeScroll,1500);
+        },
+        destroyed() {
+            clearInterval(this.noticeScrollTimer);
         },
         methods:{
+            getAdList(){
+                this.axios.get(this.ApiPath.home.adList).then(res=>{
+                    this.adList = res.data;
+                });
+            },
+            getNewNotice(){
+                this.axios.get(this.ApiPath.home.notice).then(res=>{
+                    this.newNotice = res.data;
+                });
+            },
             getCategoryList(){
                 this.axios.get(this.ApiPath.category.getList).then(res=>{
                     this.categoryGroup = res.data;
@@ -881,8 +875,8 @@
             noticeScroll(){
                 this.animate=true;    // 因为在消息向上滚动的时候需要添加css3过渡动画，所以这里需要设置true
                 setTimeout(()=>{      //  这里直接使用了es6的箭头函数，省去了处理this指向偏移问题，代码也比之前简化了很多
-                    this.new_notice.push(this.new_notice[0]);  // 将数组的第一个元素添加到数组的
-                    this.new_notice.shift();               //删除数组的第一个元素
+                    this.newNotice.push(this.newNotice[0]);  // 将数组的第一个元素添加到数组的
+                    this.newNotice.shift();               //删除数组的第一个元素
                     this.animate=false;  // margin-top 为0 的时候取消过渡动画，实现无缝滚动
                 },500)
             },
@@ -896,6 +890,7 @@
         }
     }
 </script>
+
 <style  lang="less">
     .home-banner-carousel{
         position: relative;
@@ -925,520 +920,5 @@
     }
 </style>
 <style scoped lang="less">
-    .home-page{
-        position: relative;
-        .banner{
-            position: absolute;
-            z-index: 2;
-            width: 1200px;
-            margin: 0 auto;
-            left: 50%;
-            top: 0;
-            height: 550px;
-            transform: translate(-50%,0);
-            margin-top: -30px;
-            .category-wrap{
-                position: absolute;
-                z-index: 2;
-                left: 0;
-                top: 50%;
-                border-radius: 10px;
-                transform: translate(0,-50%);
-                .category-mini{
-                    position: relative;
-                    height: auto;
-                    width: 210px;
-                    .group-category{
-                        padding: 15px 30px;
-                        height: 74px;
-                        box-sizing: border-box;
-                        background: rgba(255,255,255,0.95);
-                        &:first-child{
-                            border-radius: 10px 10px 0 0;
-                        }
-                        &:last-child{
-                            border-radius: 0 0 10px 10px;
-                        }
-                        &:hover{
-                            background: #fff;
-                            .group-item{
-                                a{
-                                    color: #333;
-                                }
-                            }
-                            .group-son{
-                                display: flex;
-                            }
-
-                        }
-                        .group-son{
-                            display: none;
-                            position: absolute;
-                            left: 201px;
-                            height: 444px;
-                            max-width: 1020px;
-                            background: #FFF;
-                            padding: 24px 22px 24px 28px;
-                            border-radius: 0 10px 10px 0;
-                            box-shadow: 0 0 46px rgba(0, 0, 0, 0.1);
-                            top: 0;
-                            z-index: 1;
-                            overflow: hidden;
-                            box-sizing: border-box;
-                            .son-list{
-                                list-style: none;
-                                .show-all-li{
-                                    &:hover{
-                                        background: none;
-                                    }
-                                    a{
-                                        width: 112px;
-                                        height: 42px;
-                                        line-height: 42px;
-                                        margin-top: 18px;
-                                        margin-left: 22px;
-                                        border: 1px solid #f2f2f2;
-                                        border-radius: 0 22px 22px 0;
-                                        font-size: 13px;
-                                        color: #a7a7a7;
-                                        display: block;
-                                        position: relative;
-                                        text-indent: 34px;
-                                        &:before{
-                                            content: "";
-                                            width: 42px;
-                                            height: 42px;
-                                            background: #fff;
-                                            border: 1px solid #f2f2f2;
-                                            display: block;
-                                            border-radius: 22px;
-                                            position: absolute;
-                                            top: -1px;
-                                            left: -22px;
-                                        }
-                                        &:after{
-                                            content: "";
-                                            width: 0;
-                                            height: 0;
-                                            display: block;
-                                            border-bottom: 5px solid transparent;
-                                            border-top: 5px solid transparent;
-                                            border-left: 5px solid #c0c0c0;
-                                            position: absolute;
-                                            top: 16px;
-                                            left: -1px;
-                                        }
-
-                                        span{
-                                            margin-top: 0px;
-                                            margin-left: 0px;
-                                        }
-
-                                    }
-                                }
-                                li{
-                                    white-space: nowrap;
-                                    padding: 12px 15px;
-                                    border-radius: 10px;
-                                    overflow: hidden;
-                                    box-sizing: border-box;
-                                    height: 80px;
-                                    margin: 15px 0;
-                                    &:hover{
-                                        background: #f6f6f6;
-                                        a{
-                                            span{
-                                                color: #777;
-                                            }
-                                        }
-                                    }
-                                    a{
-                                        display: flex;
-                                        img{
-                                            width: 56px;
-                                            height: 56px;
-                                        }
-                                        span{
-                                            display: block;
-                                            margin-top: 20px;
-                                            margin-left: 10px;
-                                            color: #777;
-                                        }
-                                    }
-                                }
-                            }
-
-
-                        }
-                        .parent-group{
-                            a{
-                                font-size: 16px;
-
-                            }
-                        }
-                        .group-item{
-                            a{
-                                color: #848484;
-                                &:hover{
-                                    color:#cf0a2c;
-                                }
-                                margin-right: 10px;
-                                &:last-child{
-                                    margin-right: 0;
-                                }
-                            }
-
-                        }
-                    }
-                }
-
-
-            }
-        }
-        .home-banner-carousel{
-            .banner-a{
-                display: block;
-                width: 100%;
-                height: auto;
-                text-align: center;
-                .banner-img{
-                    margin: 0 auto;
-                }
-            }
-        }
-
-        .banner-next-wrap{
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-            top: -60px;
-            background: #FFF;
-            text-align: center;
-            border-top: 0 none;
-            width: 1200px;
-            height: 88px;
-            border-radius: 10px;
-            box-shadow: 0 2px 26px rgba(0,0,0,0.07);
-            display: flex;
-            z-index: 2;
-            .user-avatar-login{
-                float: left;
-                margin: 18px 0;
-                padding: 0 27px;
-                display: flex;
-                border-right: 1px solid#dcdcdc;
-                .avatar{
-                    margin-right: 15px;
-                }
-                 .login-reg{
-                     text-align: left;
-                     font-size: 14px;
-                     span{
-                         color: #848484;
-                     }
-                     a{
-                         margin: 0 5px;
-                         color: #333;
-                     }
-                 }
-                 .login-reg-btm{
-                     text-align: left;
-                     margin-top: 6px;
-                    a{
-                        font-size: 13px;
-                        padding: 3px 10px;
-                        border-radius: 7px;
-                        &:first-child{
-                            color: #de5b60;
-                            border: 1px solid #de5b60;
-                            margin-right: 10px;
-                            &:hover{
-                                background: #de5b60;
-                                color: #fff;
-                            }
-                        }
-                        &:last-child{
-                            background: #595454;
-                            border:1px solid #595454;
-                            color: #fde4b3;
-                            &:hover{
-                                background: #333;
-                            }
-                        }
-                    }
-                 }
-            }
-
-            .center{
-                flex: 1;
-                display: flex;
-                .center-mini{
-                    text-align: center;
-                    position: relative;
-                    width: 80px;
-                    margin: 0 10px;
-                    overflow: hidden;
-                    box-sizing: border-box;
-                    padding: 15px 0;
-                    color: #777;
-                    .img{
-                        width: 40px;
-                        height: 40px;
-                        overflow: hidden;
-                        text-align: center;
-                        margin: 0 auto;
-                        img{
-                            position: relative;
-                            height: 100%;
-                            left: 0;
-                        }
-
-                    }
-                    &:nth-child(2){
-                        img{
-                            left: -40px;
-                        }
-                    }
-                    &:nth-child(3){
-                        img{
-                            left: -40px;
-                        }
-                    }
-                    &:nth-child(4){
-                        img{
-                            left: -80px;
-                        }
-                    }
-                    &:nth-child(5){
-                        img{
-                            left: -120px;
-                        }
-                    }
-                    &:nth-child(6){
-                        img{
-                            left: -160px;
-                        }
-                    }
-                    span{
-                        font-size: 12px;
-                    }
-                }
-            }
-
-            .notice-rap{
-                width: 260px;
-                border-left: 1px solid #eee;
-                .notice-list{
-                    margin: 10px;
-                    text-align: left;
-                    display: flex;
-                    height: 25px;
-                    overflow: hidden;
-                    line-height: 25px;
-                    .b-text{
-                        width: 40px;
-                        font-size: 14px;
-                        font-weight: 700;
-                    }
-                    .list-item{
-                        position: relative;
-                        flex: 1;
-                        text-align: left;
-                        overflow: hidden;
-                        .item{
-                            font-size: 12px;
-                            float: left;
-                            width: 100%;
-                            color: #777;
-                            overflow: hidden;
-                            white-space: nowrap;
-                            text-overflow: ellipsis;
-                            cursor: pointer;
-                        }
-                    }
-                }
-                .evm-rap{
-                    display: flex;
-                    padding: 10px;
-                    border-top: 1px solid #eee;
-                    .item{
-                        display: flex;
-                        flex: 1;
-                        color: #777;
-                        font-size: 12px;
-                        text-align: left;
-                        line-height: 23px;
-                        &:nth-child(2){
-                            .img{
-                                img{
-                                    right: 260px;
-                                }
-                            }
-                        }
-                        &:nth-child(3){
-                            .img{
-                                img{
-                                    right: 280px;
-                                }
-                            }
-                        }
-                        .img{
-                            position: relative;
-                            width: 20px;
-                            height: 20px;
-                            overflow: hidden;
-                            display: block;
-                            img{
-                                position: relative;
-                                right: 240px;
-                                height: 40px;
-                                margin-right: 5px;
-                            }
-                        }
-                    }
-                }
-            }
-
-
-
-        }
-
-        .home-ad-1{
-            position: relative;
-            top: -35px;
-            width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            .ad-list{
-                flex: 1;
-                box-sizing: border-box;
-                overflow: hidden;
-                margin-right: 13px;
-                transition: all .2s linear 0s;
-                border-radius: 10px;
-                height: 200px;
-                &:hover{
-                    box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-                }
-                &:last-child{
-                    margin-right: 0;
-                }
-                a{
-                    width: 100%;
-                    display: block;
-                    img{
-                        width: 100%;
-                        height: auto;
-                    }
-                }
-            }
-        }
-
-        .home-hot-product{
-            width: 1200px;
-            margin: 0 auto;
-            .group-title{
-                position: relative;
-                top: -15px;
-            }
-            .product-box{
-                display: flex;
-                .hot-ad{
-                    width: 230px;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    height: 592px;
-                    &:hover{
-                        transition: all 0.2s linear 0s;
-                        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-                    }
-                    a{
-                        img{
-                            width: 100%;
-                            height: auto;
-                        }
-                    }
-                }
-                .product-right{
-                    flex: 1;
-                    .product-item{
-                        width: 230px;
-                        float: left;
-                        overflow: hidden;
-                        margin: 0 0 12px 12px;
-                        background: #f9f9f9;
-                        border-radius: 10px;
-                        transition: all 0.2s linear 0s;
-                        text-align: center;
-                        height: 290px;
-                        &:hover{
-                            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-                        }
-                        .tag{
-                            height: 23px;
-                            span{
-                                padding: 5px 10px 5px;
-                                color: #fff;
-                                background: #ff8486;
-                                border-radius: 0 0 7px 7px;
-                                box-sizing: border-box;
-                                font-size: 12px;
-                            }
-                        }
-                        .pic{
-                            box-sizing: border-box;
-                            padding: 12px 40px 0 40px;
-                            padding-bottom: 0px;
-                            img{
-                                width: 100%;
-                            }
-                        }
-                        .title{
-                            height: 21px;
-                            line-height: 21px;
-                            margin: 7px 5px 0 5px;
-                        }
-                        .desc{
-                            color: #777;
-                            line-height: 18px;
-                            padding: 0 10px;
-                            margin: 5px 20px 7px;
-                            font-size: 12px;
-                        }
-                        .price{
-                            color: #d0021b;
-                            line-height: 21px;
-                            margin-bottom: 0;
-                        }
-                    }
-
-                }
-            }
-
-        }
-
-        .home-recommend{
-            width: 1200px;
-            margin: 0 auto;
-            .recommend-title{
-                margin-bottom: 15px;
-            }
-            .recommend-swiper {
-                width: 1210px;
-                margin-left: -5px;
-
-            }
-        }
-
-        .banner-ad-01{
-            width: 1200px;
-            margin: 27px auto;
-        }
-
-        .home-channel-container{
-            margin-top: 27px;
-        }
-    }
-
-
+    @import "../../assets/less/home.less";
 </style>

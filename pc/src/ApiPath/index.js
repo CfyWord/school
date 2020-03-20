@@ -1,6 +1,10 @@
 const res = {
     common:{
-        config:'/config/index'
+        config:'/config/index',
+    },
+    home:{
+        notice:'/home/notice',
+        adList: '/home/ad',
     },
     category:{
         getList:'/cate/list',

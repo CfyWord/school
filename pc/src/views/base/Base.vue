@@ -392,6 +392,32 @@
                 </div>
             </div>
         </div>
+        <div id="base-right-card-back-top" >
+           <div class="item card">
+               <router-link to="#">
+                   <Icon type="ios-cart-outline" />
+                   <span class="subtext">购物车</span>
+               </router-link>
+           </div>
+            <div class="item call">
+                <router-link to="#">
+                    <Icon type="ios-call-outline" />
+                    <span class="subtext">联系客服</span>
+                </router-link>
+            </div>
+            <div class="item contact">
+                <router-link to="#">
+                    <Icon type="ios-contact-outline" />
+                    <span class="subtext">个人中心</span>
+                </router-link>
+            </div>
+            <div class="item contact" v-if="scrollTop>300">
+                <a @click="backTop">
+                    <Icon type="ios-arrow-dropup" />
+                    <span class="subtext">回到顶部</span>
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -411,6 +437,7 @@
                hotSearch:[],
                hotSearchItemList:[],
                searchTime:null,
+               scrollTop:0,
            }
         },
         computed: {
@@ -420,6 +447,7 @@
         },
         created() {
             this.getCommonConfig();
+            window.addEventListener('scroll',this.handleScroll,true)
         },
         mounted(){
             window.addEventListener('click', this.documentClick)
@@ -429,6 +457,20 @@
                 SearchHistoryRecordClear: 'SearchHistoryRecord/clear', // 将 `this.add()` 映射为 `this.$store.commit('increment')`
                 SearchHistoryRecordReset:'SearchHistoryRecord/reset',
             }),
+            handleScroll(){
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+                this.scrollTop = scrollTop;
+            },
+            backTop () {
+                let that = this;
+                let timer = setInterval(() => {
+                    let ispeed = Math.floor(-that.scrollTop / 5)
+                    document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed
+                    if (that.scrollTop === 0) {
+                        clearInterval(timer)
+                    }
+                }, 16)
+            },
             documentClick(e){
                 let path = e.path;
                 let hide = true;

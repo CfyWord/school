@@ -5,11 +5,14 @@ import router from './router'
 import ApiPath from './ApiPath/index.js';
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
-Vue.use(ViewUI)
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
+import VueLazyload from 'vue-lazyload'
 
+Vue.use(VueLazyload);
+
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
+Vue.use(ViewUI)
 Vue.prototype.ApiPath = ApiPath;
 
 import axios from 'axios'
